@@ -46,12 +46,17 @@ class Converter {
             var string = libType.classLine(name: className) + newL
             for key in dict.keys {
                 if let value = dict[key] {
-                    if type(of: value) == type(of: NSNumber(value: true)) {
-                        string += tab + libType.varDecLine(name: key, type: "Bool") + newL
-                    } else if value is Int {
-                        string += tab + libType.varDecLine(name: key, type: "Int") + newL
-                    } else if value is Double {
-                        string += tab + libType.varDecLine(name: key, type: "Double") + newL
+                    if let nsNumber = value as? NSNumber {
+                        switch(nsNumber.getType()) {
+                        case "Bool":
+                            string += tab + libType.varDecLine(name: key, type: "Bool") + newL
+                        case "Int":
+                            string += tab + libType.varDecLine(name: key, type: "Int") + newL
+                        case "Double":
+                            string += tab + libType.varDecLine(name: key, type: "Double") + newL
+                        default:
+                            break
+                        }
                     } else if value is String {
                         string += tab + libType.varDecLine(name: key, type: "String") + newL
                     } else if value is NSArray {
@@ -77,6 +82,10 @@ class Converter {
                         classNames.append(className)
                     }
                 }
+            }
+            
+            if let extra = libType.extraFunctionLine() {
+                string += newL + tab + extra + newL
             }
             
             // decode function
@@ -117,6 +126,32 @@ class Converter {
     let tab = "    "
 }
 
+extension NSNumber {
+    func getType() -> String {
+            switch CFGetTypeID(self as CFTypeRef) {
+            case CFBooleanGetTypeID():
+                return "Bool"
+            case CFNumberGetTypeID():
+                switch CFNumberGetType(self as CFNumber) {
+                case .sInt8Type:
+                    return "Int"
+                case .sInt16Type:
+                     return "Int"
+                case .sInt32Type:
+                    return "Int"
+                case .sInt64Type:
+                    return "Int"
+                case .doubleType:
+                    return "Double"
+                default:
+                    return "Double"
+                }
+            default:
+                return "NSNumber"
+            }
+    }
+}
+
 extension String {
     var toCamel: String {
         return split(separator: "_").reduce(into: "", { $0 += $1.capitalized })
@@ -127,6 +162,7 @@ protocol Moldable {
     func importLine() -> String
     func classLine(name: String) -> String
     func varDecLine(name: String, type: String) -> String
+    func extraFunctionLine() -> String?
     func decodeFuncLine() -> String?
     func decodeLine(name: String, key: String) -> String?
     func encodeFuncLine() -> String?

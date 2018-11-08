@@ -9,6 +9,7 @@
 import Foundation
 
 class Gloss: Moldable {
+
     func importLine() -> String {
         return "import Gloss"
     }
@@ -19,6 +20,10 @@ class Gloss: Moldable {
     
     func varDecLine(name: String, type: String) -> String {
         return "let \(name): \(type)?"
+    }
+    
+    func extraFunctionLine() -> String? {
+        return nil
     }
     
     func decodeFuncLine() -> String? {

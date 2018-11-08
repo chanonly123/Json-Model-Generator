@@ -21,6 +21,10 @@ class ObjectMapper: Moldable {
         return "var \(name): \(type)?"
     }
     
+    func extraFunctionLine() -> String? {
+        return "required init?(map: Map) {}"
+    }
+    
     func decodeFuncLine() -> String? {
         return "func mapping(map: Map) {"
     }
