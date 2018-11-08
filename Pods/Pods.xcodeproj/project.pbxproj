@@ -1,0 +1,656 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0582BF2CFF7F7EE41BD51628F0CB19D6 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93703969DBBCD6E7B2E60757A20E2399 /* Types.swift */; };
+		1382BA19D14A3DE628D50DAD696AEFCF /* SyntaxTextView+TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E043BD0FA7F4C841E28EB3B6FED936 /* SyntaxTextView+TextViewDelegate.swift */; };
+		17376C86FABEAC323549FB899C393CD3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF428FC7C7A6555B2B02D8E238C8D8F2 /* Cocoa.framework */; };
+		38D70CBF7B21AA8CBD4E77D184F128CA /* LineNumberLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3265A74352723CAF81B6C7EA5C5EC4 /* LineNumberLayoutManager.swift */; };
+		3AC97C358BAE276C01069717B910D80A /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AFF7EBDF45DB2C918AFCBAEB62EF8 /* Token.swift */; };
+		3E78586A508D0633795E82D01FFB86B3 /* ASTVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A9B7B7BF000036F7384102BA39121 /* ASTVisualizer.swift */; };
+		3ECA6201E64A662D39DDF048B24EB62A /* SyntaxColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C443787BD468D999FE53D020E4F4C43 /* SyntaxColorTheme.swift */; };
+		4BBF5E27EC3DB9F811A05EB277CCE54C /* Lexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9802881881C3D36BF066E04D3BD3CBF /* Lexer.swift */; };
+		612C7CB5C0999DACA432B96C7385AEDF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF428FC7C7A6555B2B02D8E238C8D8F2 /* Cocoa.framework */; };
+		63DB24F0FCC7EC7793228FD6CE0AA5C1 /* SavannaKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88682C317AEB082C1F8DA2B4AC2E4E93 /* SavannaKit-dummy.m */; };
+		6B425E79D5300A9447AFE5D949E5E56F /* RegexLexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5FDA70C2910B3E6659D2C2094E7C /* RegexLexer.swift */; };
+		6FD3A39F601637A50E5907AB562C6BB3 /* SyntaxTextViewLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D3ADF157E6D81C34E70E0B8A4C8224 /* SyntaxTextViewLayoutManager.swift */; };
+		70CD10A7B0576AD9BB5A41C2241F0829 /* TextViewWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D6D9ADB23D07D56D55BC48793D664F /* TextViewWrapperView.swift */; };
+		71B30501A1254FFB723C853E626683FF /* Paragraphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6645796E067BFA7F918BBE3F7302E1 /* Paragraphs.swift */; };
+		8B664BCF5F13D0E31F5C4A3A555DDB2F /* SyntaxTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D79B0D5FBA65B29728FCDBCB554D8A /* SyntaxTextView.swift */; };
+		9C0985B82F5A227680FAAA0F10AA71F1 /* Pods-JsonToModel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 998E7E403F30BEF0A2D6B60E91CB3693 /* Pods-JsonToModel-dummy.m */; };
+		A31DFB875717F0157DF938A9ED46CA81 /* NSTextView+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BE9B8F3A16D38C300C36F3DF5D6A0E /* NSTextView+UIKit.swift */; };
+		CEAEECB274A104A060B7334BF4A2F9BE /* Pods-JsonToModel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B2369EEEDA9BC327A56E15A2E68C7010 /* Pods-JsonToModel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CEC1DAB8E6EA599DC4575915F0991DF7 /* SavannaKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A451B006C202793E3294F0D040AEFD8 /* SavannaKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA10EF2BD3B42CEAFAD2D159DB78C021 /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF72183022AEC20E961696EF430DD5C /* Paragraph.swift */; };
+		ECB809EF855EC08BC2AF1044B300B4F0 /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809A3D68358260540D24ED2CE53AE41 /* String+Range.swift */; };
+		F1E3509170A8438458EF8BB53968272E /* NSMutableAttributedString+Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503FB50F838A7BE2EFD84D7951254B9 /* NSMutableAttributedString+Tokens.swift */; };
+		F6FBAB23B0C2398A074F0B5CA5FF70B4 /* InnerTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CEC066A81CE96F71E1ADF5876F046E /* InnerTextView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		12F43EAA83FCF9F0CE56A78488977E93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80A9EF75D9051344B3729D5ADBAD0C01;
+			remoteInfo = SavannaKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		070463DCE5DC43C7955E22EC116DCC01 /* SavannaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SavannaKit.framework; path = SavannaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07E043BD0FA7F4C841E28EB3B6FED936 /* SyntaxTextView+TextViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SyntaxTextView+TextViewDelegate.swift"; path = "Sources/SavannaKit/View/SyntaxTextView+TextViewDelegate.swift"; sourceTree = "<group>"; };
+		07F2F2254464BF48BD7DF04DFB86C7DD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14D3ADF157E6D81C34E70E0B8A4C8224 /* SyntaxTextViewLayoutManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SyntaxTextViewLayoutManager.swift; path = Sources/SavannaKit/View/SyntaxTextViewLayoutManager.swift; sourceTree = "<group>"; };
+		19D79B0D5FBA65B29728FCDBCB554D8A /* SyntaxTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SyntaxTextView.swift; path = Sources/SavannaKit/View/SyntaxTextView.swift; sourceTree = "<group>"; };
+		31FCE464B9E0407466C10F1E22BF47E7 /* Pods-JsonToModel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JsonToModel.modulemap"; sourceTree = "<group>"; };
+		393B2679F10AB1F54D8D7E99FE455D28 /* Pods_JsonToModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JsonToModel.framework; path = "Pods-JsonToModel.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E07F3C6D3951E6B372977726FE31FB9 /* SavannaKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SavannaKit-prefix.pch"; sourceTree = "<group>"; };
+		4F24E6E2E8904B075A1DECDD326F0288 /* Pods-JsonToModel-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JsonToModel-resources.sh"; sourceTree = "<group>"; };
+		506A9B7B7BF000036F7384102BA39121 /* ASTVisualizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ASTVisualizer.swift; path = Sources/SavannaKit/ASTVisualizer.swift; sourceTree = "<group>"; };
+		56D7E67A8E77CFE0FDD63DC1888C2A48 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		681D46DF4B4A3F23BC38D89A617C2475 /* Pods-JsonToModel-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JsonToModel-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6DA6ED8128CC05BD89A70E546F483E38 /* Pods-JsonToModel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JsonToModel.debug.xcconfig"; sourceTree = "<group>"; };
+		6F6645796E067BFA7F918BBE3F7302E1 /* Paragraphs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Paragraphs.swift; path = Sources/SavannaKit/View/Paragraphs.swift; sourceTree = "<group>"; };
+		73CEC066A81CE96F71E1ADF5876F046E /* InnerTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InnerTextView.swift; path = Sources/SavannaKit/View/InnerTextView.swift; sourceTree = "<group>"; };
+		840AFF7EBDF45DB2C918AFCBAEB62EF8 /* Token.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Token.swift; path = Sources/SavannaKit/Model/Token.swift; sourceTree = "<group>"; };
+		88682C317AEB082C1F8DA2B4AC2E4E93 /* SavannaKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SavannaKit-dummy.m"; sourceTree = "<group>"; };
+		8A451B006C202793E3294F0D040AEFD8 /* SavannaKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SavannaKit-umbrella.h"; sourceTree = "<group>"; };
+		8C443787BD468D999FE53D020E4F4C43 /* SyntaxColorTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SyntaxColorTheme.swift; path = Sources/SavannaKit/Model/SyntaxColorTheme.swift; sourceTree = "<group>"; };
+		93703969DBBCD6E7B2E60757A20E2399 /* Types.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Types.swift; path = Sources/SavannaKit/Util/Types.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		998E7E403F30BEF0A2D6B60E91CB3693 /* Pods-JsonToModel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JsonToModel-dummy.m"; sourceTree = "<group>"; };
+		B1EE1EC836BED771094C7E85FD3CB050 /* Pods-JsonToModel-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JsonToModel-acknowledgements.plist"; sourceTree = "<group>"; };
+		B2369EEEDA9BC327A56E15A2E68C7010 /* Pods-JsonToModel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JsonToModel-umbrella.h"; sourceTree = "<group>"; };
+		B503FB50F838A7BE2EFD84D7951254B9 /* NSMutableAttributedString+Tokens.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSMutableAttributedString+Tokens.swift"; path = "Sources/SavannaKit/Util/NSMutableAttributedString+Tokens.swift"; sourceTree = "<group>"; };
+		BC3265A74352723CAF81B6C7EA5C5EC4 /* LineNumberLayoutManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LineNumberLayoutManager.swift; path = Sources/SavannaKit/View/LineNumberLayoutManager.swift; sourceTree = "<group>"; };
+		C21B808F86EF40DEDFB51D4414016CA6 /* Pods-JsonToModel-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JsonToModel-frameworks.sh"; sourceTree = "<group>"; };
+		C25E7690F8163514A4D729FFF2797F00 /* SavannaKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SavannaKit.xcconfig; sourceTree = "<group>"; };
+		D8BE9B8F3A16D38C300C36F3DF5D6A0E /* NSTextView+UIKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSTextView+UIKit.swift"; path = "Sources/SavannaKit/Util/NSTextView+UIKit.swift"; sourceTree = "<group>"; };
+		DF428FC7C7A6555B2B02D8E238C8D8F2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		E809A3D68358260540D24ED2CE53AE41 /* String+Range.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Range.swift"; path = "Sources/SavannaKit/Util/String+Range.swift"; sourceTree = "<group>"; };
+		EBF72183022AEC20E961696EF430DD5C /* Paragraph.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Paragraph.swift; path = Sources/SavannaKit/Model/Paragraph.swift; sourceTree = "<group>"; };
+		EC68F3BFCAF8F13F4114919D3501BD62 /* SavannaKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SavannaKit.modulemap; sourceTree = "<group>"; };
+		ED2D5FDA70C2910B3E6659D2C2094E7C /* RegexLexer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RegexLexer.swift; path = Sources/SavannaKit/Model/RegexLexer.swift; sourceTree = "<group>"; };
+		F2A11D0CD7B27BEAA2C6D52619D71908 /* Pods-JsonToModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JsonToModel.release.xcconfig"; sourceTree = "<group>"; };
+		F4D6D9ADB23D07D56D55BC48793D664F /* TextViewWrapperView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextViewWrapperView.swift; path = Sources/SavannaKit/View/TextViewWrapperView.swift; sourceTree = "<group>"; };
+		F9802881881C3D36BF066E04D3BD3CBF /* Lexer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Lexer.swift; path = Sources/SavannaKit/Model/Lexer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0C6C6EADEA34F5AA7467E8B8CFDD4943 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17376C86FABEAC323549FB899C393CD3 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C902FC1AA396CC83E71AF9D030E585C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				612C7CB5C0999DACA432B96C7385AEDF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2DAE89593CB0A4DA08A1CA72724C49A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				393B2679F10AB1F54D8D7E99FE455D28 /* Pods_JsonToModel.framework */,
+				070463DCE5DC43C7955E22EC116DCC01 /* SavannaKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA7AC8429882A95AA0810A9DCDED54FF /* OS X */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3A18BB3DDB1976264C696AF395A43F02 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				07F2F2254464BF48BD7DF04DFB86C7DD /* Info.plist */,
+				EC68F3BFCAF8F13F4114919D3501BD62 /* SavannaKit.modulemap */,
+				C25E7690F8163514A4D729FFF2797F00 /* SavannaKit.xcconfig */,
+				88682C317AEB082C1F8DA2B4AC2E4E93 /* SavannaKit-dummy.m */,
+				4E07F3C6D3951E6B372977726FE31FB9 /* SavannaKit-prefix.pch */,
+				8A451B006C202793E3294F0D040AEFD8 /* SavannaKit-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SavannaKit";
+			sourceTree = "<group>";
+		};
+		6BE698A8C2931C97E62A8D84C3735509 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BD7909DA0A64D03A45C32A68B1339442 /* SavannaKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		73D697D31E01EA2B1BEC45F2A9C24FC0 /* Pods-JsonToModel */ = {
+			isa = PBXGroup;
+			children = (
+				56D7E67A8E77CFE0FDD63DC1888C2A48 /* Info.plist */,
+				31FCE464B9E0407466C10F1E22BF47E7 /* Pods-JsonToModel.modulemap */,
+				681D46DF4B4A3F23BC38D89A617C2475 /* Pods-JsonToModel-acknowledgements.markdown */,
+				B1EE1EC836BED771094C7E85FD3CB050 /* Pods-JsonToModel-acknowledgements.plist */,
+				998E7E403F30BEF0A2D6B60E91CB3693 /* Pods-JsonToModel-dummy.m */,
+				C21B808F86EF40DEDFB51D4414016CA6 /* Pods-JsonToModel-frameworks.sh */,
+				4F24E6E2E8904B075A1DECDD326F0288 /* Pods-JsonToModel-resources.sh */,
+				B2369EEEDA9BC327A56E15A2E68C7010 /* Pods-JsonToModel-umbrella.h */,
+				6DA6ED8128CC05BD89A70E546F483E38 /* Pods-JsonToModel.debug.xcconfig */,
+				F2A11D0CD7B27BEAA2C6D52619D71908 /* Pods-JsonToModel.release.xcconfig */,
+			);
+			name = "Pods-JsonToModel";
+			path = "Target Support Files/Pods-JsonToModel";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */,
+				6BE698A8C2931C97E62A8D84C3735509 /* Pods */,
+				2DAE89593CB0A4DA08A1CA72724C49A1 /* Products */,
+				E53B395360BDDE38114D00968F9A3962 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		BD7909DA0A64D03A45C32A68B1339442 /* SavannaKit */ = {
+			isa = PBXGroup;
+			children = (
+				506A9B7B7BF000036F7384102BA39121 /* ASTVisualizer.swift */,
+				73CEC066A81CE96F71E1ADF5876F046E /* InnerTextView.swift */,
+				F9802881881C3D36BF066E04D3BD3CBF /* Lexer.swift */,
+				BC3265A74352723CAF81B6C7EA5C5EC4 /* LineNumberLayoutManager.swift */,
+				B503FB50F838A7BE2EFD84D7951254B9 /* NSMutableAttributedString+Tokens.swift */,
+				D8BE9B8F3A16D38C300C36F3DF5D6A0E /* NSTextView+UIKit.swift */,
+				EBF72183022AEC20E961696EF430DD5C /* Paragraph.swift */,
+				6F6645796E067BFA7F918BBE3F7302E1 /* Paragraphs.swift */,
+				ED2D5FDA70C2910B3E6659D2C2094E7C /* RegexLexer.swift */,
+				E809A3D68358260540D24ED2CE53AE41 /* String+Range.swift */,
+				8C443787BD468D999FE53D020E4F4C43 /* SyntaxColorTheme.swift */,
+				19D79B0D5FBA65B29728FCDBCB554D8A /* SyntaxTextView.swift */,
+				07E043BD0FA7F4C841E28EB3B6FED936 /* SyntaxTextView+TextViewDelegate.swift */,
+				14D3ADF157E6D81C34E70E0B8A4C8224 /* SyntaxTextViewLayoutManager.swift */,
+				F4D6D9ADB23D07D56D55BC48793D664F /* TextViewWrapperView.swift */,
+				840AFF7EBDF45DB2C918AFCBAEB62EF8 /* Token.swift */,
+				93703969DBBCD6E7B2E60757A20E2399 /* Types.swift */,
+				3A18BB3DDB1976264C696AF395A43F02 /* Support Files */,
+			);
+			name = SavannaKit;
+			path = SavannaKit;
+			sourceTree = "<group>";
+		};
+		E53B395360BDDE38114D00968F9A3962 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				73D697D31E01EA2B1BEC45F2A9C24FC0 /* Pods-JsonToModel */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		FA7AC8429882A95AA0810A9DCDED54FF /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				DF428FC7C7A6555B2B02D8E238C8D8F2 /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		79876A204836568F3269B076BEF0E595 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEAEECB274A104A060B7334BF4A2F9BE /* Pods-JsonToModel-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0C99F5777677BDDAFBDA162E613FDA2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC1DAB8E6EA599DC4575915F0991DF7 /* SavannaKit-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		80A9EF75D9051344B3729D5ADBAD0C01 /* SavannaKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC63569FCCA4472AB8990A518DEED943 /* Build configuration list for PBXNativeTarget "SavannaKit" */;
+			buildPhases = (
+				E39E675ED0AD37AB7F03896A6B6E386C /* Sources */,
+				0C6C6EADEA34F5AA7467E8B8CFDD4943 /* Frameworks */,
+				D0C99F5777677BDDAFBDA162E613FDA2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SavannaKit;
+			productName = SavannaKit;
+			productReference = 070463DCE5DC43C7955E22EC116DCC01 /* SavannaKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		850AD929AED15B0AEA23F8B2171B54B3 /* Pods-JsonToModel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61E5AC7EB70921A648AC38B3FF01B4A4 /* Build configuration list for PBXNativeTarget "Pods-JsonToModel" */;
+			buildPhases = (
+				A4E6FAC03536B0F224A3600D07332DCF /* Sources */,
+				C902FC1AA396CC83E71AF9D030E585C8 /* Frameworks */,
+				79876A204836568F3269B076BEF0E595 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0D9EDACB212EEC5C8E1681A06DF24F75 /* PBXTargetDependency */,
+			);
+			name = "Pods-JsonToModel";
+			productName = "Pods-JsonToModel";
+			productReference = 393B2679F10AB1F54D8D7E99FE455D28 /* Pods_JsonToModel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 2DAE89593CB0A4DA08A1CA72724C49A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				850AD929AED15B0AEA23F8B2171B54B3 /* Pods-JsonToModel */,
+				80A9EF75D9051344B3729D5ADBAD0C01 /* SavannaKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A4E6FAC03536B0F224A3600D07332DCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C0985B82F5A227680FAAA0F10AA71F1 /* Pods-JsonToModel-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E39E675ED0AD37AB7F03896A6B6E386C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E78586A508D0633795E82D01FFB86B3 /* ASTVisualizer.swift in Sources */,
+				F6FBAB23B0C2398A074F0B5CA5FF70B4 /* InnerTextView.swift in Sources */,
+				4BBF5E27EC3DB9F811A05EB277CCE54C /* Lexer.swift in Sources */,
+				38D70CBF7B21AA8CBD4E77D184F128CA /* LineNumberLayoutManager.swift in Sources */,
+				F1E3509170A8438458EF8BB53968272E /* NSMutableAttributedString+Tokens.swift in Sources */,
+				A31DFB875717F0157DF938A9ED46CA81 /* NSTextView+UIKit.swift in Sources */,
+				DA10EF2BD3B42CEAFAD2D159DB78C021 /* Paragraph.swift in Sources */,
+				71B30501A1254FFB723C853E626683FF /* Paragraphs.swift in Sources */,
+				6B425E79D5300A9447AFE5D949E5E56F /* RegexLexer.swift in Sources */,
+				63DB24F0FCC7EC7793228FD6CE0AA5C1 /* SavannaKit-dummy.m in Sources */,
+				ECB809EF855EC08BC2AF1044B300B4F0 /* String+Range.swift in Sources */,
+				3ECA6201E64A662D39DDF048B24EB62A /* SyntaxColorTheme.swift in Sources */,
+				1382BA19D14A3DE628D50DAD696AEFCF /* SyntaxTextView+TextViewDelegate.swift in Sources */,
+				8B664BCF5F13D0E31F5C4A3A555DDB2F /* SyntaxTextView.swift in Sources */,
+				6FD3A39F601637A50E5907AB562C6BB3 /* SyntaxTextViewLayoutManager.swift in Sources */,
+				70CD10A7B0576AD9BB5A41C2241F0829 /* TextViewWrapperView.swift in Sources */,
+				3AC97C358BAE276C01069717B910D80A /* Token.swift in Sources */,
+				0582BF2CFF7F7EE41BD51628F0CB19D6 /* Types.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0D9EDACB212EEC5C8E1681A06DF24F75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SavannaKit;
+			target = 80A9EF75D9051344B3729D5ADBAD0C01 /* SavannaKit */;
+			targetProxy = 12F43EAA83FCF9F0CE56A78488977E93 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		18DA4FD2FF25099B80CB77C2C24C6F22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2A11D0CD7B27BEAA2C6D52619D71908 /* Pods-JsonToModel.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-JsonToModel/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MODULEMAP_FILE = "Target Support Files/Pods-JsonToModel/Pods-JsonToModel.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		1C319FE8FEF78C160E1BFEB270E25F16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		22C2E3BFDCF957F6CB084716E7777910 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C25E7690F8163514A4D729FFF2797F00 /* SavannaKit.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/SavannaKit/SavannaKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SavannaKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "Target Support Files/SavannaKit/SavannaKit.modulemap";
+				PRODUCT_MODULE_NAME = SavannaKit;
+				PRODUCT_NAME = SavannaKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7F35EC72114C5911AF77A9DF2140039A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DA6ED8128CC05BD89A70E546F483E38 /* Pods-JsonToModel.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-JsonToModel/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MODULEMAP_FILE = "Target Support Files/Pods-JsonToModel/Pods-JsonToModel.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		822B7102BBE44F4B911960928BE7992D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		B0CF0036FDABDC08999A344E14028970 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C25E7690F8163514A4D729FFF2797F00 /* SavannaKit.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/SavannaKit/SavannaKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SavannaKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "Target Support Files/SavannaKit/SavannaKit.modulemap";
+				PRODUCT_MODULE_NAME = SavannaKit;
+				PRODUCT_NAME = SavannaKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				822B7102BBE44F4B911960928BE7992D /* Debug */,
+				1C319FE8FEF78C160E1BFEB270E25F16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		61E5AC7EB70921A648AC38B3FF01B4A4 /* Build configuration list for PBXNativeTarget "Pods-JsonToModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F35EC72114C5911AF77A9DF2140039A /* Debug */,
+				18DA4FD2FF25099B80CB77C2C24C6F22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC63569FCCA4472AB8990A518DEED943 /* Build configuration list for PBXNativeTarget "SavannaKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0CF0036FDABDC08999A344E14028970 /* Debug */,
+				22C2E3BFDCF957F6CB084716E7777910 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

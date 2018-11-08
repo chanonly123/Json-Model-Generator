@@ -30,10 +30,10 @@ class Gloss: Moldable {
     }
     
     func encodeFuncLine() -> String? {
-        return nil
+        return "func toJSON() -> JSON? {\nreturn jsonify(["
     }
     
     func encodeLine(name: String, key: String) -> String? {
-        return nil
+        return "\"\(key)\" ~~> \(name)"
     }
 }
