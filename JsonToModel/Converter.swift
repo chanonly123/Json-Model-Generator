@@ -17,6 +17,9 @@ class Converter {
     
     var libType: Moldable = ObjectMapper()
     var rooClassName: String = "Root"
+    var caseTypeClass: CaseType = .upperCamel
+    var caseTypeVar: CaseType = .camel
+    
     var infix = "_"
     var postfix = "-"
     
@@ -46,38 +49,39 @@ class Converter {
             var string = libType.classLine(name: className) + newL
             for key in dict.keys {
                 if let value = dict[key] {
+                    let varName = key.to(caseType: caseTypeVar)
                     if let nsNumber = value as? NSNumber {
-                        switch(nsNumber.getType()) {
+                        switch nsNumber.getType() {
                         case "Bool":
-                            string += tab + libType.varDecLine(name: key, type: "Bool") + newL
+                            string += tab + libType.varDecLine(name: varName, type: "Bool") + newL
                         case "Int":
-                            string += tab + libType.varDecLine(name: key, type: "Int") + newL
+                            string += tab + libType.varDecLine(name: varName, type: "Int") + newL
                         case "Double":
-                            string += tab + libType.varDecLine(name: key, type: "Double") + newL
+                            string += tab + libType.varDecLine(name: varName, type: "Double") + newL
                         default:
                             break
                         }
                     } else if value is String {
-                        string += tab + libType.varDecLine(name: key, type: "String") + newL
+                        string += tab + libType.varDecLine(name: varName, type: "String") + newL
                     } else if value is NSArray {
                         let array: NSArray = value as! NSArray
                         if array.filter({ $0 is Int }).count == array.count {
-                            string += tab + libType.varDecLine(name: key, type: "[Int]") + newL
+                            string += tab + libType.varDecLine(name: varName, type: "[Int]") + newL
                         } else if array.filter({ $0 is Double }).count == array.count {
-                            string += tab + libType.varDecLine(name: key, type: "[Double]") + newL
+                            string += tab + libType.varDecLine(name: varName, type: "[Double]") + newL
                         } else if array.filter({ $0 is Bool }).count == array.count {
-                            string += tab + libType.varDecLine(name: key, type: "[Bool]") + newL
+                            string += tab + libType.varDecLine(name: varName, type: "[Bool]") + newL
                         } else if array.filter({ $0 is [String: Any?] }).count == array.count {
-                            let className = key.toCamel
-                            string += tab + libType.varDecLine(name: key, type: "[\(className)]") + newL
+                            let className = key.to(caseType: caseTypeClass)
+                            string += tab + libType.varDecLine(name: varName, type: "[\(className)]") + newL
                             queue.append(array.firstObject as! [String: Any?])
                             classNames.append(className)
                         } else {
-                            string += tab + libType.varDecLine(name: key, type: "[NSArray]") + newL
+                            string += tab + libType.varDecLine(name: varName, type: "[NSArray]") + newL
                         }
                     } else if value is [String: Any?] {
-                        let className = key.toCamel
-                        string += tab + libType.varDecLine(name: key, type: "[\(className)]") + newL
+                        let className = key.to(caseType: caseTypeClass)
+                        string += tab + libType.varDecLine(name: varName, type: "[\(className)]") + newL
                         queue.append(value as! [String: Any?])
                         classNames.append(className)
                     }
@@ -92,7 +96,8 @@ class Converter {
             if let funcLine = libType.decodeFuncLine() {
                 string += newL + tab + funcLine + newL
                 for key in dict.keys {
-                    string += tab + tab + libType.decodeLine(name: key, key: key)! + newL
+                    let varName = key.to(caseType: caseTypeVar)
+                    string += tab + tab + libType.decodeLine(name: varName, key: key)! + newL
                 }
                 string += tab + "}" + newL // end of func
             }
@@ -101,7 +106,8 @@ class Converter {
             if let funcLine = libType.encodeFuncLine() {
                 string += newL + tab + funcLine + newL
                 for key in dict.keys {
-                    string += tab + tab + libType.encodeLine(name: key, key: key)! + newL
+                    let varName = key.to(caseType: caseTypeVar)
+                    string += tab + tab + libType.encodeLine(name: varName, key: key)! + newL
                 }
                 string += tab + "}" + newL // end of func
             }
@@ -128,33 +134,42 @@ class Converter {
 
 extension NSNumber {
     func getType() -> String {
-            switch CFGetTypeID(self as CFTypeRef) {
-            case CFBooleanGetTypeID():
-                return "Bool"
-            case CFNumberGetTypeID():
-                switch CFNumberGetType(self as CFNumber) {
-                case .sInt8Type:
-                    return "Int"
-                case .sInt16Type:
-                     return "Int"
-                case .sInt32Type:
-                    return "Int"
-                case .sInt64Type:
-                    return "Int"
-                case .doubleType:
-                    return "Double"
-                default:
-                    return "Double"
-                }
+        switch CFGetTypeID(self as CFTypeRef) {
+        case CFBooleanGetTypeID():
+            return "Bool"
+        case CFNumberGetTypeID():
+            switch CFNumberGetType(self as CFNumber) {
+            case .sInt8Type:
+                return "Int"
+            case .sInt16Type:
+                return "Int"
+            case .sInt32Type:
+                return "Int"
+            case .sInt64Type:
+                return "Int"
+            case .doubleType:
+                return "Double"
             default:
-                return "NSNumber"
+                return "Double"
             }
+        default:
+            return "NSNumber"
+        }
     }
 }
 
 extension String {
-    var toCamel: String {
-        return split(separator: "_").reduce(into: "", { $0 += $1.capitalized })
+    func to(caseType: CaseType) -> String {
+        switch caseType {
+        case .upperCamel:
+            return split(separator: "_").reduce(into: "", { $0 += $1.capitalized })
+        case .camel:
+            var comps = split(separator: "_")
+            let first = comps.removeFirst()
+            return first + comps.reduce(into: "", { $0 += $1.capitalized })
+        default:
+            return self
+        }
     }
 }
 
@@ -167,4 +182,8 @@ protocol Moldable {
     func decodeLine(name: String, key: String) -> String?
     func encodeFuncLine() -> String?
     func encodeLine(name: String, key: String) -> String?
+}
+
+enum CaseType {
+    case upperCamel, camel, snake, none
 }
