@@ -41,7 +41,7 @@ enum MyTokenType {
     }
     
     static let keywords: [String] = [
-        "var", "class", "func", "struct", "let", "init", "init?"
+        "var", "class", "func", "struct", "let", "init", "init?", "required"
     ]
     
     static let types: [String] = [

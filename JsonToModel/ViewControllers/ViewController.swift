@@ -14,20 +14,40 @@ class ViewController: NSViewController {
     @IBOutlet var tvJsonString: SyntaxTextView!
     @IBOutlet var tfError: NSTextField!
     
-    @IBOutlet weak var tfPrefix: NSTextField!
+    // options class
     @IBOutlet weak var tfRootName: NSTextField!
-    @IBOutlet weak var tfInfix: NSTextField!
+    @IBOutlet weak var tfPrefix: NSTextField!
+    @IBOutlet weak var tfPostfix: NSTextField!
+    
+    // options variables
+    @IBOutlet weak var tfVarPrefix: NSTextField!
+    @IBOutlet weak var tfVarPostfix: NSTextField!
+    @IBOutlet weak var rVarStyleCamel: NSButton!
+    @IBOutlet weak var rVarStyleSnake: NSButton!
+    
+    // Converter selection
+    @IBOutlet weak var popUpConverter: NSPopUpButton!
     
     let lexer = MyLexer()
+    
     var converter: Converter!
+    var caseTypeClass: CaseType = .upperCamel
+    var caseTypeVar: CaseType = .camel
+    var converterType: Moldable = ObjectMapper()
+    
+    let arrConverterTypes: [ConverterType] = [.objMapper, .gloss]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        popUpConverter.removeAllItems()
+        popUpConverter.addItems(withTitles: arrConverterTypes.map({ $0.rawValue }))
+        popUpConverter.target = self
+        popUpConverter.action = #selector(converterTypeChanged)
+        
         tvCode.delegate = self
         tvCode.scrollView.drawsBackground = true
         tvCode.theme = MyTheme()
-        
         
         tvJsonString.delegate = self
         tvJsonString.scrollView.drawsBackground = true
@@ -81,6 +101,8 @@ class ViewController: NSViewController {
             
             self.converter = Converter()
             self.converter.libType = type
+            self.converter.caseTypeClass = self.caseTypeClass
+            self.converter.caseTypeVar = self.caseTypeVar
             
             self.converter.convertToDictionary(text: jsonString, handler: { [weak self] text, error in
                 guard let `self` = self else { return }
@@ -98,15 +120,47 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func radioButtonChanged(_ sender: AnyObject) {
+    @IBAction func radioClassChanged(_ sender: NSButton) {
+        sender.state = .on
+        sender.superview?.subviews.filter({ $0 !== sender }).forEach({ ($0 as? NSButton)?.state = .off })
+        if sender.tag == 0 {
+            caseTypeClass = .none
+        } else if sender.tag == 1 {
+            caseTypeClass = .upperCamel
+        } else if sender.tag == 2 {
+            caseTypeClass = .lowerSnake
+        }
+        processJson()
+    }
+    
+    @IBAction func radioVarChanged(_ sender: NSButton) {
+        sender.state = .on
+        sender.superview?.subviews.filter({ $0 !== sender }).forEach({ ($0 as? NSButton)?.state = .off })
+        if sender.tag == 0 {
+            caseTypeVar = .none
+        } else if sender.tag == 1 {
+            caseTypeVar = .camel
+        } else if sender.tag == 2 {
+            caseTypeVar = .lowerSnake
+        }
+        processJson()
+    }
+    
+    @objc func converterTypeChanged() {
+        converterType = ConverterType(rawValue: popUpConverter.titleOfSelectedItem ?? "")?.converter ?? ObjectMapper()
+        processJson()
+    }
+    
+    func processJson() {
+        let text = tvJsonString.text
+        processJson(jsonString: text, type: converterType)
     }
 }
 
 extension ViewController: SyntaxTextViewDelegate {
     func didChangeText(_ syntaxTextView: SyntaxTextView) {
         if syntaxTextView === tvJsonString {
-            let text = syntaxTextView.text
-            processJson(jsonString: text, type: ObjectMapper())
+            processJson()
         }
     }
     
@@ -115,5 +169,17 @@ extension ViewController: SyntaxTextViewDelegate {
     
     func lexerForSource(_ source: String) -> Lexer {
         return lexer
+    }
+}
+
+enum ConverterType: String {
+    case objMapper = "Objective Mapper", gloss = "Gloss"
+    var converter: Moldable {
+        switch self {
+        case .objMapper:
+            return ObjectMapper()
+        case .gloss:
+            return Gloss()
+        }
     }
 }

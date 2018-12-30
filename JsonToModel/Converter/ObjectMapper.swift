@@ -8,37 +8,40 @@
 
 import Foundation
 
-class Gloss: Moldable {
-
+class ObjectMapper: Moldable {
     func importLine() -> String {
-        return "import Gloss"
+        return "import ObjectMapper"
     }
     
     func classLine(name: String) -> String {
-        return "struct \(name): JSONDecodable {"
+        return "class \(name): Mappable {"
     }
     
     func varDecLine(name: String, type: String) -> String {
-        return "let \(name): \(type)?"
+        return "var \(name): \(type)?"
     }
     
     func extraFunctionLine() -> String? {
-        return nil
+        return "required init?(map: Map) {}"
     }
     
     func decodeFuncLine() -> String? {
-        return "init?(json: JSON) {"
+        return "func mapping(map: Map) {"
     }
     
     func decodeLine(name: String, key: String) -> String? {
-        return "\(name) = \"\(key)\" <~~ json"
+        return "\(name) <- map[\"\(key)\"]"
     }
     
     func encodeFuncLine() -> String? {
-        return "func toJSON() -> JSON? {\nreturn jsonify(["
+        return nil
     }
     
     func encodeLine(name: String, key: String) -> String? {
-        return "\"\(key)\" ~~> \(name)"
+        return nil
+    }
+    
+    func encodeFuncEndLine() -> String? {
+        return nil
     }
 }

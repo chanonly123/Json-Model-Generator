@@ -81,7 +81,7 @@ class Converter {
                         }
                     } else if value is [String: Any?] {
                         let className = key.to(caseType: caseTypeClass)
-                        string += tab + libType.varDecLine(name: varName, type: "[\(className)]") + newL
+                        string += tab + libType.varDecLine(name: varName, type: "\(className)") + newL
                         queue.append(value as! [String: Any?])
                         classNames.append(className)
                     }
@@ -109,7 +109,7 @@ class Converter {
                     let varName = key.to(caseType: caseTypeVar)
                     string += tab + tab + libType.encodeLine(name: varName, key: key)! + newL
                 }
-                string += tab + "}" + newL // end of func
+                string += tab + (libType.encodeFuncEndLine() ?? "}") + newL // end of func
             }
             
             string += "}" + newL + newL // end of class
@@ -162,28 +162,67 @@ extension String {
     func to(caseType: CaseType) -> String {
         switch caseType {
         case .upperCamel:
-            return split(separator: "_").reduce(into: "", { $0 += $1.capitalized })
+            return toCamelCaseCapFirst()
         case .camel:
-            var comps = split(separator: "_")
-            let first = comps.removeFirst()
-            return first + comps.reduce(into: "", { $0 += $1.capitalized })
+            return toCamelCase()
+        case .lowerSnake:
+            return toSnakeCase(lowercase: true)
+        case .snake:
+            return toSnakeCase(lowercase: false)
         default:
             return self
         }
     }
 }
 
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + self.dropFirst()
+    }
+    
+    func toCamelCaseCapFirst() -> String {
+        return replacingOccurrences(of: "-", with: "_")
+            .split(separator: "_").map({ String($0).capitalizingFirstLetter() }).joined()
+    }
+    
+    func toCamelCase() -> String {
+        var comps = replacingOccurrences(of: "-", with: "_").split(separator: "_")
+        let first = comps.removeFirst()
+        var last = comps.map({ return String($0).capitalizingFirstLetter() })
+        last.insert(String(first), at: 0)
+        return last.joined()
+    }
+    
+    func toSnakeCase(lowercase: Bool) -> String {
+        let pattern = "([a-z0-9])([A-Z])"
+        
+        let regex = try? NSRegularExpression(pattern: pattern, options: [])
+        let range = NSRange(location: 0, length: self.count)
+        let str = regex?.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: "$1_$2")
+        if lowercase {
+            return str?.lowercased() ?? self
+        }
+        return str?.split(separator: "_").map({ String($0).capitalizingFirstLetter() }).joined(separator: "_") ?? self
+    }
+}
+
 protocol Moldable {
     func importLine() -> String
+    
     func classLine(name: String) -> String
+    
     func varDecLine(name: String, type: String) -> String
+    
     func extraFunctionLine() -> String?
+    
     func decodeFuncLine() -> String?
     func decodeLine(name: String, key: String) -> String?
+    
     func encodeFuncLine() -> String?
     func encodeLine(name: String, key: String) -> String?
+    func encodeFuncEndLine() -> String?
 }
 
 enum CaseType {
-    case upperCamel, camel, snake, none
+    case upperCamel, camel, snake, lowerSnake, none
 }

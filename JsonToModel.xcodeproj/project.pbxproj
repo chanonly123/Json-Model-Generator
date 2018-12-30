@@ -68,18 +68,42 @@
 		17BA1DE8219056A900E644E0 /* JsonToModel */ = {
 			isa = PBXGroup;
 			children = (
-				17BA1DE9219056A900E644E0 /* AppDelegate.swift */,
-				17BA1DEB219056A900E644E0 /* ViewController.swift */,
-				1744AEB7219182440068F930 /* ObjectMapper.swift */,
-				1744AEB92191B07E0068F930 /* Gloss.swift */,
+				17FBA7592196B3C100CFFB52 /* Supporting */,
+				17FBA75A2196B3D500CFFB52 /* Converter */,
+				17FBA7582196B3B000CFFB52 /* ViewControllers */,
 				17BA1DED219056AA00E644E0 /* Assets.xcassets */,
 				17BA1DEF219056AA00E644E0 /* Main.storyboard */,
+				17BA1DE9219056A900E644E0 /* AppDelegate.swift */,
+			);
+			path = JsonToModel;
+			sourceTree = "<group>";
+		};
+		17FBA7582196B3B000CFFB52 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				17BA1DEB219056A900E644E0 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		17FBA7592196B3C100CFFB52 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
 				17BA1DF2219056AA00E644E0 /* Info.plist */,
 				17BA1DF3219056AA00E644E0 /* JsonToModel.entitlements */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		17FBA75A2196B3D500CFFB52 /* Converter */ = {
+			isa = PBXGroup;
+			children = (
+				1744AEB7219182440068F930 /* ObjectMapper.swift */,
+				1744AEB92191B07E0068F930 /* Gloss.swift */,
 				1744AEBB2192BE110068F930 /* Converter.swift */,
 				1763655B219303220083A69B /* Highlighter.swift */,
 			);
-			path = JsonToModel;
+			path = Converter;
 			sourceTree = "<group>";
 		};
 		645BAE70CF65EFBF83310160 /* Pods */ = {
@@ -353,12 +377,12 @@
 			baseConfigurationReference = A53E13A4D83DFC98E483C379 /* Pods-JsonToModel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = JsonToModel/JsonToModel.entitlements;
+				CODE_SIGN_ENTITLEMENTS = JsonToModel/Supporting/JsonToModel.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 5WW76S3NRC;
-				INFOPLIST_FILE = JsonToModel/Info.plist;
+				INFOPLIST_FILE = JsonToModel/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -375,12 +399,12 @@
 			baseConfigurationReference = 2AA5C53F61C6B921DC59F4AF /* Pods-JsonToModel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = JsonToModel/JsonToModel.entitlements;
+				CODE_SIGN_ENTITLEMENTS = JsonToModel/Supporting/JsonToModel.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 5WW76S3NRC;
-				INFOPLIST_FILE = JsonToModel/Info.plist;
+				INFOPLIST_FILE = JsonToModel/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
