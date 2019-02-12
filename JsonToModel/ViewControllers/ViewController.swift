@@ -17,11 +17,11 @@ class ViewController: NSViewController {
     // options class
     @IBOutlet weak var tfRootName: NSTextField!
     @IBOutlet weak var tfPrefix: NSTextField!
-    @IBOutlet weak var tfPostfix: NSTextField!
+    @IBOutlet weak var tfSuffix: NSTextField!
     
     // options variables
     @IBOutlet weak var tfVarPrefix: NSTextField!
-    @IBOutlet weak var tfVarPostfix: NSTextField!
+    @IBOutlet weak var tfVarSuffix: NSTextField!
     @IBOutlet weak var rVarStyleCamel: NSButton!
     @IBOutlet weak var rVarStyleSnake: NSButton!
     
@@ -34,11 +34,22 @@ class ViewController: NSViewController {
     var caseTypeClass: CaseType = .upperCamel
     var caseTypeVar: CaseType = .camel
     var converterType: Moldable = ObjectMapper()
+    var classRoot = "Root"
+    var classPrefix: String = ""
+    var classSuffix: String = ""
+    var varPrefix: String = ""
+    var varSuffix: String = ""
     
     let arrConverterTypes: [ConverterType] = [.objMapper, .gloss]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tfRootName.delegate = self
+        tfPrefix.delegate = self
+        tfSuffix.delegate = self
+        tfVarPrefix.delegate = self
+        tfVarSuffix.delegate = self
         
         popUpConverter.removeAllItems()
         popUpConverter.addItems(withTitles: arrConverterTypes.map({ $0.rawValue }))
@@ -96,13 +107,19 @@ class ViewController: NSViewController {
     }
     
     func processJson(jsonString: String, type: Moldable) {
+        self.converter = Converter()
+        
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async { [weak self] in
             guard let `self` = self else { return }
             
-            self.converter = Converter()
             self.converter.libType = type
             self.converter.caseTypeClass = self.caseTypeClass
             self.converter.caseTypeVar = self.caseTypeVar
+            self.converter.rooClassName = self.classRoot
+            self.converter.classPrefix = self.classPrefix
+            self.converter.classSuffix = self.classSuffix
+            self.converter.varPrefix = self.varPrefix
+            self.converter.varSuffix = self.varSuffix
             
             self.converter.convertToDictionary(text: jsonString, handler: { [weak self] text, error in
                 guard let `self` = self else { return }
@@ -154,6 +171,17 @@ class ViewController: NSViewController {
     func processJson() {
         let text = tvJsonString.text
         processJson(jsonString: text, type: converterType)
+    }
+}
+
+extension ViewController: NSTextFieldDelegate {
+    override func controlTextDidChange(_ obj: Notification) {
+        classSuffix = tfSuffix.stringValue
+        classPrefix = tfPrefix.stringValue
+        classRoot = tfRootName.stringValue
+        varPrefix = tfVarPrefix.stringValue
+        varSuffix = tfVarSuffix.stringValue
+        processJson()
     }
 }
 

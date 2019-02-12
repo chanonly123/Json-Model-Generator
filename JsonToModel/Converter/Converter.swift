@@ -17,11 +17,13 @@ class Converter {
     
     var libType: Moldable = ObjectMapper()
     var rooClassName: String = "Root"
-    var caseTypeClass: CaseType = .upperCamel
-    var caseTypeVar: CaseType = .camel
+    var caseTypeClass: CaseType = .none
+    var caseTypeVar: CaseType = .none
     
-    var infix = "_"
-    var postfix = "-"
+    var classPrefix = ""
+    var classSuffix = ""
+    var varPrefix: String = ""
+    var varSuffix: String = ""
     
     func convertToDictionary(text: String, handler: @escaping ((String?, String?) -> Void)) {
         self.handler = handler
@@ -72,7 +74,7 @@ class Converter {
                         } else if array.filter({ $0 is Bool }).count == array.count {
                             string += tab + libType.varDecLine(name: varName, type: "[Bool]") + newL
                         } else if array.filter({ $0 is [String: Any?] }).count == array.count {
-                            let className = key.to(caseType: caseTypeClass)
+                            let className = classPrefix + key.to(caseType: caseTypeClass) + classSuffix
                             string += tab + libType.varDecLine(name: varName, type: "[\(className)]") + newL
                             queue.append(array.firstObject as! [String: Any?])
                             classNames.append(className)
@@ -80,7 +82,7 @@ class Converter {
                             string += tab + libType.varDecLine(name: varName, type: "[NSArray]") + newL
                         }
                     } else if value is [String: Any?] {
-                        let className = key.to(caseType: caseTypeClass)
+                        let className = classPrefix + key.to(caseType: caseTypeClass) + classSuffix
                         string += tab + libType.varDecLine(name: varName, type: "\(className)") + newL
                         queue.append(value as! [String: Any?])
                         classNames.append(className)

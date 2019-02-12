@@ -819,7 +819,7 @@
                                                                         </textField>
                                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6lZ-Fz-Y4R">
                                                                             <rect key="frame" x="0.0" y="57" width="148" height="20"/>
-                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="border" placeholderString="Prefix" drawsBackground="YES" id="cUl-hR-yCx">
+                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="border" placeholderString="Infix" drawsBackground="YES" id="cUl-hR-yCx">
                                                                                 <font key="font" metaFont="cellTitle"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -834,11 +834,11 @@
                                                                             </textFieldCell>
                                                                         </textField>
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KFg-l9-iJ4">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="144" height="21"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="124" height="21"/>
                                                                             <subviews>
                                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pfV-9V-Dlc">
-                                                                                    <rect key="frame" x="-6" y="-7" width="60" height="32"/>
-                                                                                    <buttonCell key="cell" type="push" title="def" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="gZ9-Mv-YZ3">
+                                                                                    <rect key="frame" x="-6" y="-7" width="40" height="32"/>
+                                                                                    <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="gZ9-Mv-YZ3">
                                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                                         <font key="font" metaFont="system"/>
                                                                                     </buttonCell>
@@ -847,8 +847,8 @@
                                                                                     </connections>
                                                                                 </button>
                                                                                 <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rcm-NG-Eza">
-                                                                                    <rect key="frame" x="42" y="-7" width="57" height="32"/>
-                                                                                    <buttonCell key="cell" type="push" title="Ab" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="t8M-sT-NbR">
+                                                                                    <rect key="frame" x="22" y="-7" width="57" height="32"/>
+                                                                                    <buttonCell key="cell" type="push" title="Ab" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="t8M-sT-NbR">
                                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                                         <font key="font" metaFont="system"/>
                                                                                     </buttonCell>
@@ -857,7 +857,7 @@
                                                                                     </connections>
                                                                                 </button>
                                                                                 <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="KSG-d1-981">
-                                                                                    <rect key="frame" x="87" y="-7" width="63" height="32"/>
+                                                                                    <rect key="frame" x="67" y="-7" width="63" height="32"/>
                                                                                     <buttonCell key="cell" type="push" title="A_B" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="ZF8-e1-KtW">
                                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                                         <font key="font" metaFont="system"/>
@@ -959,11 +959,11 @@
                                                                             </textFieldCell>
                                                                         </textField>
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fda-jm-O3F">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="141" height="21"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="121" height="21"/>
                                                                             <subviews>
                                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RJo-C7-Vnl">
-                                                                                    <rect key="frame" x="-6" y="-7" width="60" height="32"/>
-                                                                                    <buttonCell key="cell" type="push" title="def" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="7AR-BS-ycR">
+                                                                                    <rect key="frame" x="-6" y="-7" width="40" height="32"/>
+                                                                                    <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="7AR-BS-ycR">
                                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                                         <font key="font" metaFont="system"/>
                                                                                     </buttonCell>
@@ -972,8 +972,8 @@
                                                                                     </connections>
                                                                                 </button>
                                                                                 <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Nc-fY-TRE">
-                                                                                    <rect key="frame" x="42" y="-7" width="56" height="32"/>
-                                                                                    <buttonCell key="cell" type="push" title="aB" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="DkL-vG-2Ig">
+                                                                                    <rect key="frame" x="22" y="-7" width="56" height="32"/>
+                                                                                    <buttonCell key="cell" type="push" title="aB" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="DkL-vG-2Ig">
                                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                                         <font key="font" metaFont="system"/>
                                                                                     </buttonCell>
@@ -982,7 +982,7 @@
                                                                                     </connections>
                                                                                 </button>
                                                                                 <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="R1M-SG-Kd6">
-                                                                                    <rect key="frame" x="86" y="-7" width="61" height="32"/>
+                                                                                    <rect key="frame" x="66" y="-7" width="61" height="32"/>
                                                                                     <buttonCell key="cell" type="push" title="a_b" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="dfm-tP-QrA">
                                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                                         <font key="font" metaFont="system"/>
@@ -1167,11 +1167,11 @@
                         <outlet property="rVarStyleCamel" destination="RJo-C7-Vnl" id="rBF-Vj-Jsq"/>
                         <outlet property="rVarStyleSnake" destination="R1M-SG-Kd6" id="rs1-ng-grJ"/>
                         <outlet property="tfError" destination="AeE-oO-TJZ" id="sOF-Pg-TIb"/>
-                        <outlet property="tfPostfix" destination="ZOE-Zm-Gth" id="gVz-rP-67I"/>
-                        <outlet property="tfPrefix" destination="6lZ-Fz-Y4R" id="XVv-lM-cYS"/>
+                        <outlet property="tfPrefix" destination="6lZ-Fz-Y4R" id="o9y-k1-oeR"/>
                         <outlet property="tfRootName" destination="sh1-cG-c3h" id="YQg-pF-WlH"/>
-                        <outlet property="tfVarPostfix" destination="GnO-fU-X4Z" id="sxh-GY-bmp"/>
-                        <outlet property="tfVarPrefix" destination="4Ox-H2-F3C" id="tTo-pn-l9U"/>
+                        <outlet property="tfSuffix" destination="ZOE-Zm-Gth" id="r0x-hM-oCk"/>
+                        <outlet property="tfVarPrefix" destination="4Ox-H2-F3C" id="puu-Nc-HTS"/>
+                        <outlet property="tfVarSuffix" destination="GnO-fU-X4Z" id="tC7-ih-ThN"/>
                         <outlet property="tvCode" destination="bsX-Aw-Uao" id="rn8-4h-LMt"/>
                         <outlet property="tvJsonString" destination="WfQ-ly-PGU" id="ei0-eF-SCv"/>
                     </connections>
