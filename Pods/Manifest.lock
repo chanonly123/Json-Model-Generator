@@ -5,12 +5,12 @@ DEPENDENCIES:
   - SavannaKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - SavannaKit
 
 SPEC CHECKSUMS:
   SavannaKit: 920c240bde011900df8156200a960dad3ee5edfd
 
-PODFILE CHECKSUM: e9584a65ef5bbc11c5a83c6460aaa0a88b013fdf
+PODFILE CHECKSUM: fb6a5d54810b6e661f731a2ce6e8d2404b0863d8
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.8.4

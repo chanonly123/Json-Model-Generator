@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "80A9EF75D9051344B3729D5ADBAD0C01"
+               BlueprintIdentifier = "E843493762328AA7207820885B63DC79"
+               BuildableName = "SavannaKit.framework"
                BlueprintName = "SavannaKit"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "SavannaKit.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -12,53 +12,27 @@ import SavannaKit
 class ViewController: NSViewController {
     @IBOutlet var tvCode: SyntaxTextView!
     @IBOutlet var tvJsonString: SyntaxTextView!
+    @IBOutlet var tvTemplateString: SyntaxTextView!
     @IBOutlet var tfError: NSTextField!
-    
-    // options class
-    @IBOutlet weak var tfRootName: NSTextField!
-    @IBOutlet weak var tfPrefix: NSTextField!
-    @IBOutlet weak var tfSuffix: NSTextField!
-    
-    // options variables
-    @IBOutlet weak var tfVarPrefix: NSTextField!
-    @IBOutlet weak var tfVarSuffix: NSTextField!
-    @IBOutlet weak var rVarStyleCamel: NSButton!
-    @IBOutlet weak var rVarStyleSnake: NSButton!
-    
-    // Converter selection
-    @IBOutlet weak var popUpConverter: NSPopUpButton!
+    @IBOutlet var cbType: NSComboBox!
     
     let lexer = MyLexer()
     
-    var converter: Converter!
+    var converter = TemplateConverter(t: "", js: "")
     var caseTypeClass: CaseType = .upperCamel
     var caseTypeVar: CaseType = .camel
     var converterType: Moldable = ObjectMapper()
-    var classRoot = "Root"
-    var classPrefix: String = ""
-    var classSuffix: String = ""
-    var varPrefix: String = ""
-    var varSuffix: String = ""
     
     let arrConverterTypes: [ConverterType] = [.objMapper, .gloss]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tfRootName.delegate = self
-        tfPrefix.delegate = self
-        tfSuffix.delegate = self
-        tfVarPrefix.delegate = self
-        tfVarSuffix.delegate = self
-        
-        popUpConverter.removeAllItems()
-        popUpConverter.addItems(withTitles: arrConverterTypes.map({ $0.rawValue }))
-        popUpConverter.target = self
-        popUpConverter.action = #selector(converterTypeChanged)
-        
+    
         tvCode.delegate = self
         tvCode.scrollView.drawsBackground = true
         tvCode.theme = MyTheme()
+        
+        converter.completion = completion
         
         tvJsonString.delegate = self
         tvJsonString.scrollView.drawsBackground = true
@@ -98,6 +72,19 @@ class ViewController: NSViewController {
                     "code": 200
                     }
             """
+        
+        tvTemplateString.text = """
+class {class_name} {
+
+    <loop>var {var_name}: {var_type}</loop>
+
+    required init?(map: Map) {}
+    
+    func mapping(map: Map) {
+        <loop>{var_name} <- map["{key}"]</loop>
+    }
+}
+"""
     }
     
     override var representedObject: Any? {
@@ -107,33 +94,31 @@ class ViewController: NSViewController {
     }
     
     func processJson(jsonString: String, type: Moldable) {
-        self.converter = Converter()
-        
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async { [weak self] in
-            guard let `self` = self else { return }
-            
-            self.converter.libType = type
-            self.converter.caseTypeClass = self.caseTypeClass
-            self.converter.caseTypeVar = self.caseTypeVar
-            self.converter.rooClassName = self.classRoot
-            self.converter.classPrefix = self.classPrefix
-            self.converter.classSuffix = self.classSuffix
-            self.converter.varPrefix = self.varPrefix
-            self.converter.varSuffix = self.varSuffix
-            
-            self.converter.convertToDictionary(text: jsonString, handler: { [weak self] text, error in
-                guard let `self` = self else { return }
-                print("Result generated")
-                if let text = text {
-                    self.tvCode.text = "\(text)"
-                    self.tfError.isHidden = true
-                    self.tvCode.isHidden = false
-                } else if let error = error {
-                    self.tfError.stringValue = error
-                    self.tfError.isHidden = false
-                    self.tvCode.isHidden = true
-                }
-            })
+        self.converter.caseTypeClass = self.caseTypeClass
+        self.converter.caseTypeVar = self.caseTypeVar
+        self.converter.jsonString = jsonString
+        self.converter.template = tvTemplateString.text
+        //self.converter.libType = type
+        /*self.converter.rooClassName = self.classRoot
+        self.converter.classPrefix = self.classPrefix
+        self.converter.classSuffix = self.classSuffix
+        self.converter.varPrefix = self.varPrefix
+        self.converter.varSuffix = self.varSuffix*/
+        self.converter.convert()
+    }
+    
+    var processIndex = 0
+    lazy var completion: ((ConversionResult)->Void) = { [weak self, index = processIndex] result in
+        guard let `self` = self, self.processIndex == index else { return }
+        switch result {
+        case .success(let text):
+            self.tvCode.text = "\(text)"
+            self.tfError.isHidden = true
+            self.tvCode.isHidden = false
+        case .failed(let error):
+            self.tfError.stringValue = error.localizedDescription
+            self.tfError.isHidden = false
+            self.tvCode.isHidden = true
         }
     }
     
@@ -162,26 +147,14 @@ class ViewController: NSViewController {
         }
         processJson()
     }
-    
-    @objc func converterTypeChanged() {
-        converterType = ConverterType(rawValue: popUpConverter.titleOfSelectedItem ?? "")?.converter ?? ObjectMapper()
-        processJson()
-    }
-    
+        
     func processJson() {
         let text = tvJsonString.text
         processJson(jsonString: text, type: converterType)
     }
-}
-
-extension ViewController: NSTextFieldDelegate {
-    override func controlTextDidChange(_ obj: Notification) {
-        classSuffix = tfSuffix.stringValue
-        classPrefix = tfPrefix.stringValue
-        classRoot = tfRootName.stringValue
-        varPrefix = tfVarPrefix.stringValue
-        varSuffix = tfVarSuffix.stringValue
-        processJson()
+    
+    @IBAction func actionTypeChange() {
+        
     }
 }
 

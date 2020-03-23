@@ -57,9 +57,9 @@ struct MyToken: Token {
 }
 
 class MyTheme: SyntaxColorTheme {
-    let font = NSFont.systemFont(ofSize: 12)
+    let font = NSFont.systemFont(ofSize: 14)
     let backgroundColor = Color.white
-    let lineNumbersStyle: LineNumbersStyle? = LineNumbersStyle(font: NSFont.systemFont(ofSize: 12), textColor: lineNumbersColor)
+    let lineNumbersStyle: LineNumbersStyle? = LineNumbersStyle(font: NSFont.systemFont(ofSize: 14), textColor: lineNumbersColor)
     let gutterStyle: GutterStyle = GutterStyle(backgroundColor: Color.white, minimumWidth: 32)
     
     private static var lineNumbersColor: Color {

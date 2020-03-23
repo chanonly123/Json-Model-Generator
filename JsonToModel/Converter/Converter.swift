@@ -134,32 +134,6 @@ class Converter {
     let tab = "    "
 }
 
-extension NSNumber {
-    func getType() -> String {
-        switch CFGetTypeID(self as CFTypeRef) {
-        case CFBooleanGetTypeID():
-            return "Bool"
-        case CFNumberGetTypeID():
-            switch CFNumberGetType(self as CFNumber) {
-            case .sInt8Type:
-                return "Int"
-            case .sInt16Type:
-                return "Int"
-            case .sInt32Type:
-                return "Int"
-            case .sInt64Type:
-                return "Int"
-            case .doubleType:
-                return "Double"
-            default:
-                return "Double"
-            }
-        default:
-            return "NSNumber"
-        }
-    }
-}
-
 extension String {
     func to(caseType: CaseType) -> String {
         switch caseType {

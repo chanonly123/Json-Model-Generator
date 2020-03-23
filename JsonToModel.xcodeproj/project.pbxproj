@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0DFC9B805774A783EE40068F /* Pods_JsonToModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF827A017EE0844F5760F1F /* Pods_JsonToModel.framework */; };
+		170A1AD62424D1AA004B792D /* TemplateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170A1AD52424D1AA004B792D /* TemplateConverter.swift */; };
 		1744AEB8219182440068F930 /* ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1744AEB7219182440068F930 /* ObjectMapper.swift */; };
 		1744AEBA2191B07E0068F930 /* Gloss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1744AEB92191B07E0068F930 /* Gloss.swift */; };
 		1744AEBC2192BE110068F930 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1744AEBB2192BE110068F930 /* Converter.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		170A1AD52424D1AA004B792D /* TemplateConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateConverter.swift; sourceTree = "<group>"; };
 		1744AEB7219182440068F930 /* ObjectMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapper.swift; sourceTree = "<group>"; };
 		1744AEB92191B07E0068F930 /* Gloss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gloss.swift; sourceTree = "<group>"; };
 		1744AEBB2192BE110068F930 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				1744AEB92191B07E0068F930 /* Gloss.swift */,
 				1744AEBB2192BE110068F930 /* Converter.swift */,
 				1763655B219303220083A69B /* Highlighter.swift */,
+				170A1AD52424D1AA004B792D /* TemplateConverter.swift */,
 			);
 			path = Converter;
 			sourceTree = "<group>";
@@ -216,17 +219,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-JsonToModel/Pods-JsonToModel-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SavannaKit/SavannaKit.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JsonToModel/Pods-JsonToModel-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SavannaKit.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JsonToModel/Pods-JsonToModel-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JsonToModel/Pods-JsonToModel-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JsonToModel/Pods-JsonToModel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -241,6 +243,7 @@
 				1744AEB8219182440068F930 /* ObjectMapper.swift in Sources */,
 				1744AEBA2191B07E0068F930 /* Gloss.swift in Sources */,
 				17BA1DEA219056A900E644E0 /* AppDelegate.swift in Sources */,
+				170A1AD62424D1AA004B792D /* TemplateConverter.swift in Sources */,
 				1744AEBC2192BE110068F930 /* Converter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +392,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chanonly123.JsonToModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -411,6 +415,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chanonly123.JsonToModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
