@@ -41,11 +41,11 @@ enum MyTokenType {
     }
     
     static let keywords: [String] = [
-        "var", "class", "func", "struct", "let", "init", "init?", "required"
+        "var", "class", "func", "struct", "let", "init", "required", "case", "enum", "self", "return"
     ]
     
     static let types: [String] = [
-        "Bool", "Int", "String", "Double", "int", "double", "void"
+        "Bool", "Int", "String", "Double", "int", "double", "void", "self", "class_name", "var_name", "var_type", "key", "Data", "CodingKey", "ArrayList", "List", "boolean"
     ]
 }
 
@@ -57,9 +57,10 @@ struct MyToken: Token {
 }
 
 class MyTheme: SyntaxColorTheme {
-    let font = NSFont.systemFont(ofSize: 14)
+    static let allFont = NSFont(name: "Menlo", size: 14)!
+    let font = MyTheme.allFont
     let backgroundColor = Color.white
-    let lineNumbersStyle: LineNumbersStyle? = LineNumbersStyle(font: NSFont.systemFont(ofSize: 14), textColor: lineNumbersColor)
+    let lineNumbersStyle: LineNumbersStyle? = LineNumbersStyle(font: MyTheme.allFont, textColor: lineNumbersColor)
     let gutterStyle: GutterStyle = GutterStyle(backgroundColor: Color.white, minimumWidth: 32)
     
     private static var lineNumbersColor: Color {
@@ -68,9 +69,8 @@ class MyTheme: SyntaxColorTheme {
     
     func globalAttributes() -> [NSAttributedStringKey: Any] {
         var attributes = [NSAttributedStringKey: Any]()
-        attributes[.font] = font
+        attributes[.font] = MyTheme.allFont
         attributes[.foregroundColor] = Color.black
-        
         return attributes
     }
     

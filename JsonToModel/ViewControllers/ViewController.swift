@@ -14,16 +14,21 @@ class ViewController: NSViewController {
     @IBOutlet var tvJsonString: SyntaxTextView!
     @IBOutlet var tvTemplateString: SyntaxTextView!
     @IBOutlet var tfError: NSTextField!
-    @IBOutlet var cbType: NSComboBox!
+    @IBOutlet weak var popUpConverter: NSPopUpButton!
     
     let lexer = MyLexer()
     
-    var converter = TemplateConverter(t: "", js: "")
+    lazy var converter = TemplateConverter(t: arrConverterTypes[0], js: "")
     var caseTypeClass: CaseType = .upperCamel
     var caseTypeVar: CaseType = .camel
-    var converterType: Moldable = ObjectMapper()
     
-    let arrConverterTypes: [ConverterType] = [.objMapper, .gloss]
+    let arrConverterTypes: [TemplateBean] = TemplateList.createInitialList()
+    
+    var selected: TemplateBean? {
+        didSet {
+            self.tvTemplateString.text = selected?.template ?? ""
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +38,13 @@ class ViewController: NSViewController {
         tvCode.theme = MyTheme()
         
         converter.completion = completion
+        
+        popUpConverter.removeAllItems()
+        popUpConverter.addItems(withTitles: arrConverterTypes.map({ $0.name }))
+
+        tvTemplateString.delegate = self
+        tvTemplateString.scrollView.drawsBackground = true
+        tvTemplateString.theme = MyTheme()
         
         tvJsonString.delegate = self
         tvJsonString.scrollView.drawsBackground = true
@@ -73,38 +85,14 @@ class ViewController: NSViewController {
                     }
             """
         
-        tvTemplateString.text = """
-class {class_name} {
-
-    <loop>var {var_name}: {var_type}</loop>
-
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        <loop>{var_name} <- map["{key}"]</loop>
-    }
-}
-"""
+        selected = arrConverterTypes[0]
+        processJson()
     }
     
     override var representedObject: Any? {
         didSet {
             // Update the view, if already loaded.
         }
-    }
-    
-    func processJson(jsonString: String, type: Moldable) {
-        self.converter.caseTypeClass = self.caseTypeClass
-        self.converter.caseTypeVar = self.caseTypeVar
-        self.converter.jsonString = jsonString
-        self.converter.template = tvTemplateString.text
-        //self.converter.libType = type
-        /*self.converter.rooClassName = self.classRoot
-        self.converter.classPrefix = self.classPrefix
-        self.converter.classSuffix = self.classSuffix
-        self.converter.varPrefix = self.varPrefix
-        self.converter.varSuffix = self.varSuffix*/
-        self.converter.convert()
     }
     
     var processIndex = 0
@@ -149,38 +137,32 @@ class {class_name} {
     }
         
     func processJson() {
+        guard let selected = self.selected else { return }
         let text = tvJsonString.text
-        processJson(jsonString: text, type: converterType)
+        self.converter.caseTypeClass = self.caseTypeClass
+        self.converter.caseTypeVar = self.caseTypeVar
+        self.converter.jsonString = text
+        self.converter.template = selected
+        self.converter.template.template = tvTemplateString.text
+        self.converter.convert()
     }
     
-    @IBAction func actionTypeChange() {
-        
+    @IBAction func converterTypeChanged(_ btn: NSPopUpButton) {
+        selected = arrConverterTypes[btn.indexOfSelectedItem]
+        processJson()
     }
 }
 
 extension ViewController: SyntaxTextViewDelegate {
     func didChangeText(_ syntaxTextView: SyntaxTextView) {
-        if syntaxTextView === tvJsonString {
+        if syntaxTextView === tvJsonString || syntaxTextView === tvTemplateString {
             processJson()
         }
     }
     
-    func didChangeSelectedRange(_ syntaxTextView: SyntaxTextView, selectedRange: NSRange) {
-    }
+    func didChangeSelectedRange(_ syntaxTextView: SyntaxTextView, selectedRange: NSRange) {}
     
     func lexerForSource(_ source: String) -> Lexer {
         return lexer
-    }
-}
-
-enum ConverterType: String {
-    case objMapper = "Objective Mapper", gloss = "Gloss"
-    var converter: Moldable {
-        switch self {
-        case .objMapper:
-            return ObjectMapper()
-        case .gloss:
-            return Gloss()
-        }
     }
 }
