@@ -1,3 +1,4 @@
+![alt tag](https://github.com/chanonly123/Json-Model-Generator/raw/master/banner.jpg)
 # Json-Model-Generator
 
 ### Highly customisable MacOS application for generating JSON classes
