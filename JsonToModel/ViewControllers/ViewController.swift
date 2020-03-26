@@ -9,29 +9,37 @@
 import Cocoa
 import SavannaKit
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, NSWindowDelegate {
     @IBOutlet var tvCode: SyntaxTextView!
     @IBOutlet var tvJsonString: SyntaxTextView!
     @IBOutlet var tvTemplateString: SyntaxTextView!
     @IBOutlet var tfError: NSTextField!
     @IBOutlet weak var popUpConverter: NSPopUpButton!
+    @IBOutlet weak var btnEdit: NSButton!
+    @IBOutlet weak var segVarname: NSSegmentedControl!
     
-    let lexer = MyLexer()
+    weak static var viewc: ViewController?
     
-    lazy var converter = TemplateConverter(t: arrConverterTypes[0], js: "")
+    static let lexer = MyLexer()
+    
+    lazy var converter = TemplateConverter(t: TemplateBean(n: "", t: "", l: .Swift, isUser: false), js: "")
     var caseTypeClass: CaseType = .upperCamel
     var caseTypeVar: CaseType = .camel
     
-    let arrConverterTypes: [TemplateBean] = TemplateList.createInitialList()
+    let systemTypes: [TemplateBean] = TemplateList.createInitialList()
+    var allTypes: [TemplateBean] = []
     
     var selected: TemplateBean? {
         didSet {
             self.tvTemplateString.text = selected?.template ?? ""
+            self.btnEdit.isHidden = !(selected?.isUser ?? false)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ViewController.viewc = self
     
         tvCode.delegate = self
         tvCode.scrollView.drawsBackground = true
@@ -39,9 +47,8 @@ class ViewController: NSViewController {
         
         converter.completion = completion
         
-        popUpConverter.removeAllItems()
-        popUpConverter.addItems(withTitles: arrConverterTypes.map({ $0.name }))
-
+        segVarname.selectedSegment = 1
+        
         tvTemplateString.delegate = self
         tvTemplateString.scrollView.drawsBackground = true
         tvTemplateString.theme = MyTheme()
@@ -85,8 +92,31 @@ class ViewController: NSViewController {
                     }
             """
         
-        selected = arrConverterTypes[0]
+        reloadTemplates()
         processJson()
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        view.window?.delegate = self
+    }
+    
+    func windowShouldClose(_ sender: NSWindow) -> Bool {
+        NSApplication.shared.terminate(self)
+        return true
+    }
+    
+    func reloadTemplates(select: Int = 0) {
+        var fromUser = LocalVars.savedTemplates?.list ?? []
+        fromUser.sort(by: { $0.date < $1.date })
+        allTypes.removeAll()
+        allTypes.insert(contentsOf: systemTypes, at: 0)
+        allTypes.insert(contentsOf: fromUser, at: 0)
+        
+        popUpConverter.removeAllItems()
+        popUpConverter.addItems(withTitles: allTypes.map({ "\($0.name) | \($0.language.rawValue)\($0.isUser ? " | User" : "")" }))
+        popUpConverter.selectItem(at: select)
+        selected = allTypes[select]
     }
     
     override var representedObject: Any? {
@@ -109,46 +139,53 @@ class ViewController: NSViewController {
             self.tvCode.isHidden = true
         }
     }
-    
-    @IBAction func radioClassChanged(_ sender: NSButton) {
-        sender.state = .on
-        sender.superview?.subviews.filter({ $0 !== sender }).forEach({ ($0 as? NSButton)?.state = .off })
-        if sender.tag == 0 {
-            caseTypeClass = .none
-        } else if sender.tag == 1 {
-            caseTypeClass = .upperCamel
-        } else if sender.tag == 2 {
-            caseTypeClass = .lowerSnake
-        }
-        processJson()
-    }
-    
-    @IBAction func radioVarChanged(_ sender: NSButton) {
-        sender.state = .on
-        sender.superview?.subviews.filter({ $0 !== sender }).forEach({ ($0 as? NSButton)?.state = .off })
-        if sender.tag == 0 {
-            caseTypeVar = .none
-        } else if sender.tag == 1 {
-            caseTypeVar = .camel
-        } else if sender.tag == 2 {
-            caseTypeVar = .lowerSnake
-        }
-        processJson()
-    }
         
     func processJson() {
         guard let selected = self.selected else { return }
         let text = tvJsonString.text
         self.converter.caseTypeClass = self.caseTypeClass
         self.converter.caseTypeVar = self.caseTypeVar
-        self.converter.jsonString = text
         self.converter.template = selected
-        self.converter.template.template = tvTemplateString.text
+        self.converter.jsonString = text
+        self.converter.templateString = tvTemplateString.text
         self.converter.convert()
     }
     
     @IBAction func converterTypeChanged(_ btn: NSPopUpButton) {
-        selected = arrConverterTypes[btn.indexOfSelectedItem]
+        selected = allTypes[popUpConverter.indexOfSelectedItem]
+        processJson()
+    }
+    
+    @IBAction func actionNewTemplate(_ sender: Any) {
+        if let viewc = storyboard?.instantiateController(withIdentifier: .init("NewTemplateVC")) as? NewTemplateVC {
+            viewc.didCreate = { [weak self] in
+                self?.reloadTemplates()
+            }
+            presentViewControllerAsSheet(viewc)
+        }
+    }
+    
+    @IBAction func actionEdit(_ sender: Any) {
+        if let viewc = storyboard?.instantiateController(withIdentifier: .init("NewTemplateVC")) as? NewTemplateVC {
+            let selectedIndex = popUpConverter.indexOfSelectedItem
+            viewc.inputTemplate = selected
+            viewc.didUpdate = { [weak self] in
+                self?.reloadTemplates(select: selectedIndex)
+            }
+            viewc.didDelete = { [weak self] in
+                self?.reloadTemplates()
+            }
+            presentViewControllerAsSheet(viewc)
+        }
+    }
+    
+    @IBAction func actionSegChange(_ sender: Any) {
+        switch segVarname.selectedSegment {
+        case 0: caseTypeVar = .none
+        case 1: caseTypeVar = .camel
+        case 2: caseTypeVar = .lowerSnake
+        default: break
+        }
         processJson()
     }
 }
@@ -163,6 +200,6 @@ extension ViewController: SyntaxTextViewDelegate {
     func didChangeSelectedRange(_ syntaxTextView: SyntaxTextView, selectedRange: NSRange) {}
     
     func lexerForSource(_ source: String) -> Lexer {
-        return lexer
+        return ViewController.lexer
     }
 }

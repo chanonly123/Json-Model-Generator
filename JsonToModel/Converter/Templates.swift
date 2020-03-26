@@ -15,6 +15,13 @@ class TemplateList: Codable {
 class TemplateBean: Codable {
     var name: String = ""
     var template: String = ""
+    var language: LangaugeType = .Swift
+    let isUser: Bool
+    let date: Int64 = Int64(Date().timeIntervalSince1970)
+    
+    init(n: String, t: String, l: LangaugeType, isUser: Bool) {
+        self.name = n; self.template = t; language = l; self.isUser = isUser
+    }
 }
 
 extension TemplateList {
@@ -24,9 +31,10 @@ extension TemplateList {
         let str = (try? String(contentsOf: url).split(separator: "#")) ?? []
         var i = 0
         while i + 1 < str.count {
-            let t = TemplateBean()
-            t.name = String(str[i]).trimmingCharacters(in: .whitespacesAndNewlines)
-            t.template = String(str[i+1]).trimmingCharacters(in: .whitespacesAndNewlines)
+            let name = str[i].split(separator: "|")[0].trimmingCharacters(in: .whitespacesAndNewlines)
+            let lang = str[i].split(separator: "|")[1].trimmingCharacters(in: .whitespacesAndNewlines)
+            let template = String(str[i+1]).trimmingCharacters(in: .whitespacesAndNewlines)
+            let t = TemplateBean(n: name, t: template, l: LangaugeType(rawValue: lang)!, isUser: false)
             i += 2
             arr.append(t)
         }

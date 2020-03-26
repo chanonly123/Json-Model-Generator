@@ -11,6 +11,7 @@ import Foundation
 class TemplateConverter {
     var template: TemplateBean
     var jsonString: String
+    var templateString: String = ""
     var completion: ((ConversionResult)->Void)?
     
     var caseTypeClass: CaseType = .none
@@ -46,7 +47,7 @@ class TemplateConverter {
     
     func process(dict: [String: Any?]) -> MirrorModel {
         let mirror = MirrorModel()
-        let lang: AnyLanguage = template.name.contains("Java") ? JavaLanguage() : SwiftLanguage()
+        let lang: LanguageModel = template.language.model
         for key in dict.keys {
             guard let value = dict[key] else { continue }
             var varType: String
@@ -92,7 +93,7 @@ class TemplateConverter {
     
     func getString(mirror: MirrorModel) -> String {
         var subs = mirror.sub.map { getString(mirror: $0) }
-        subs.insert(mirror.toString(template: template.template), at: 0)
+        subs.insert(mirror.toString(template: templateString), at: 0)
         return subs.joined(separator: "\n\n")
     }
     
@@ -125,16 +126,16 @@ class MirrorModel {
                 indentSpaceCount += 1
             }
             
-            var loopsString = "\n"
+            var loopsString = ""//"\n"
             for i in 0..<varName.count {
                 let newLine = line.replacingOccurrences(of: "\(tVarName)", with: "\(varName[i])")
                     .replacingOccurrences(of: "\(tVarType)", with: "\(varType[i])")
                     .replacingOccurrences(of: "\(tKey)", with: "\(key[i])")
                 
                 loopsString += "\(String(repeating: " ", count: indentSpaceCount))\(newLine)"
-                if i < varName.count - 1 {
+                /*if i < varName.count - 1 {
                     loopsString += "\n"
-                }
+                }*/
             }
             if loopsString.last == "," {
                 loopsString.removeLast()
@@ -155,7 +156,7 @@ enum ConversionResult {
 }
 
 extension NSNumber {
-    func getType(lang: AnyLanguage) -> String {
+    func getType(lang: LanguageModel) -> String {
         switch CFGetTypeID(self as CFTypeRef) {
         case CFBooleanGetTypeID():
             return lang.bool
@@ -196,41 +197,3 @@ extension String {
         return html2AttributedString?.string ?? ""
     }
 }
-
-class JavaLanguage: AnyLanguage {
-    var bool: String { return "boolean" }
-    var int: String { return "int" }
-    var string: String { return "String" }
-    var double: String { return "double" }
-    var any: String { return "Object" }
-    func array(type: String) -> String {
-        switch type {
-        case "boolean": return "boolean[]"
-        case "int": return "int[]"
-        case "double": return "double[]"
-        default: return "ArrayList<\(type)>"
-        }
-    }
-}
-
-class SwiftLanguage: AnyLanguage {
-    var bool: String { return "Bool" }
-    var int: String { return "Int" }
-    var string: String { return "String" }
-    var double: String { return "Double" }
-    var any: String { return "Any" }
-    func array(type: String) -> String {
-        return "[\(type)]"
-    }
-}
-
-protocol AnyLanguage {
-    var bool: String { get }
-    var int: String { get }
-    var string: String { get }
-    var double: String { get }
-    var any: String { get }
-    func array(type: String) -> String
-}
-
-

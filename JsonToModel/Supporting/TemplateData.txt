@@ -1,59 +1,79 @@
 #
-Object Mapper | Swift
+Object Mapper|Swift
 #
 struct {class_name} {
 
-    <loop>var {var_name}: {var_type}?</loop>
+    <loop>
+    var {var_name}: {var_type}?</loop>
 
     required init?(map: Map) {}
     
     func mapping(map: Map) {
-        <loop>{var_name} <- map["{key}"]</loop>
+        <loop>
+        {var_name} <- map["{key}"]</loop>
     }
 }
 #
-Gloss | Swift
+Gloss|Swift
 #
 struct {class_name} {
     
-    <loop>var {var_name}: {var_type}?</loop>
+    <loop>
+    var {var_name}: {var_type}?</loop>
     
     // Deserialization
     init?(json: JSON) {
-        <loop>self.{var_name} = "{key}" <~~ json</loop>
+        <loop>
+        self.{var_name} = "{key}" <~~ json</loop>
     }
     
     // Serialization
     func toJSON() -> JSON? {
         return jsonify([
-            <loop>"{key}" ~~> self.{var_name},</loop>
+            <loop>
+            "{key}" ~~> self.{var_name},</loop>
         ])
     }
 }
 #
-Codable | Swift
+Codable|Swift
 #
 struct {class_name} {
 
-    <loop>var {var_name}: {var_type}?</loop>
+    <loop>
+    var {var_name}: {var_type}?</loop>
 
     enum CodingKeys: String, CodingKey {
-        <loop>case self.{var_name} = "{key}"</loop>
+        <loop>
+        case self.{var_name} = "{key}"</loop>
     }
 }
 #
-GSON | Java
+GSON|Java
 #
 public class {class_name} {
     
-    <loop>@SerializedName("{key}")
+    <loop>
+    @SerializedName("{key}")
     {var_type} {var_name};
     </loop>
+    
     // getters
-    <loop>{var_type} get_{var_name}() { return {var_name}; }
-    </loop>
+    <loop>
+    {var_type} get_{var_name}() { return {var_name}; }</loop>
+    
     // settters
-    <loop>void set_{var_name}({var_type} {var_name}) { this.{var_name} = {var_name}; }
-    </loop>
+    <loop>
+    void set_{var_name}({var_type} {var_name}) { this.{var_name} = {var_name}; }</loop>
 }
+#
+GSON|Kotlin
+#
+data class {class_name} (
+        
+    <loop>
+    @SerializedName("{key}")
+    var {var_name}: {var_type}?
+    </loop>
+)
 #
