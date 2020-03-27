@@ -155,6 +155,12 @@ class ViewController: NSViewController, NSWindowDelegate {
         selected = allTypes[popUpConverter.indexOfSelectedItem]
         processJson()
     }
+
+    @IBAction func actionHelp(_ sender: Any) {
+        if let viewc = storyboard?.instantiateController(withIdentifier: .init("HelpVC")) as? HelpVC {
+            presentViewControllerAsModalWindow(viewc)
+        }
+    }
     
     @IBAction func actionNewTemplate(_ sender: Any) {
         if let viewc = storyboard?.instantiateController(withIdentifier: .init("NewTemplateVC")) as? NewTemplateVC {

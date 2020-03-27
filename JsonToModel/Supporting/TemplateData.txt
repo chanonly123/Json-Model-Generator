@@ -1,21 +1,13 @@
-Json|Dart
+Codable|Swift
 #
-class {class_name} {
-    
+struct {class_name} {
+
     <loop>
-    var {var_name}: {var_type}; </loop>
-    
-    {class_name}({<loop> this.{var_name},</loop> })
-    
-    {class_name}.fromJson(Map<String, dynamic> json) {
+    var {var_name}: {var_type}?</loop>
+
+    enum CodingKeys: String, CodingKey {
         <loop>
-        {var_name} = json['{key}']; </loop>
-    }
-    
-    Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = new Map<String, dynamic>();
-        <loop>
-        data['{key}'] = this.{var_name};</loop>
+        case self.{var_name} = "{key}"</loop>
     }
 }
 #
@@ -56,19 +48,6 @@ struct {class_name} {
     }
 }
 #
-Codable|Swift
-#
-struct {class_name} {
-
-    <loop>
-    var {var_name}: {var_type}?</loop>
-
-    enum CodingKeys: String, CodingKey {
-        <loop>
-        case self.{var_name} = "{key}"</loop>
-    }
-}
-#
 GSON|Java
 #
 public class {class_name} {
@@ -96,4 +75,52 @@ data class {class_name} (
     var {var_name}: {var_type}?
     </loop>
 )
+#
+Json|Dart
+#
+class {class_name} {
+    
+    <loop>
+    var {var_name}: {var_type}; </loop>
+    
+    {class_name}({<loop> this.{var_name},</loop> })
+    
+    {class_name}.fromJson(Map<String, dynamic> json) {
+        <fundamental>
+        {var_name} = json['{key}'];</fundamental>
+        <array>
+        {var_name} = json['{key}'].cast<{sub_type}>();</array>
+        <derived>
+        {var_name} = json['{key}'] != null ? new {var_type}.fromJson(json['{key}']) : null;</derived>
+        <array-derived>
+        if (json['{key}'] != null) {
+          {var_name} = new {var_type}();
+          json['{key}'].forEach((v) {
+            {var_name}.add(new {sub_type}.fromJson(v));
+          });
+        }</array-derived>
+    }
+    
+    Map<String, dynamic> toJson() {
+        final Map<String, dynamic> data = new Map<String, dynamic>();
+        
+        <fundamental>
+        data['{key}'] = {var_name};</fundamental>
+        
+        <array>
+        data['{key}'] = {var_name};</array>
+        
+        <derived>
+        if (this.{var_name} != null) {
+              data['{key}'] = this.{var_name}.toJson();
+        }</derived>
+        
+        <array-derived>
+        if (this.{var_name} != null) {
+              data['{key}'] = this.{var_name}.map((v) => v.toJson()).toList();
+        }</array-derived>
+            
+        return data;
+    }
+}
 #

@@ -104,7 +104,7 @@ class TemplateConverter {
 }
 
 enum DataTypes: String {
-    case all = "loop", fundamental, derived, array
+    case all = "loop", fundamental, array, derived, arrayDerived = "array-derived"
 }
 
 class MirrorModel {
@@ -128,6 +128,7 @@ class MirrorModel {
         replaceLoops(dataType: DataTypes.fundamental, template: &template)
         replaceLoops(dataType: DataTypes.derived, template: &template)
         replaceLoops(dataType: DataTypes.array, template: &template)
+        replaceLoops(dataType: DataTypes.arrayDerived, template: &template)
         
         return template.replacingOccurrences(of: "\(tClassName)", with: className)
     }
@@ -155,8 +156,10 @@ class MirrorModel {
                 let type = self.varType[i]
                 if dataType == .all || type.getGroup == dataType {
                     let varType = lang.get(type: type)
+                    let subType = lang.subType(type: type)
                     let newLine = line.replacingOccurrences(of: "\(tVarName)", with: "\(varName[i])")
                         .replacingOccurrences(of: "\(tVarType)", with: "\(varType)")
+                        .replacingOccurrences(of: "\(tSubVarType)", with: "\(subType)")
                         .replacingOccurrences(of: "\(tKey)", with: "\(key[i])")
                     
                     loopsString += "\(String(repeating: " ", count: indentSpaceCount))\(newLine)"
@@ -176,6 +179,7 @@ class MirrorModel {
     let tClassName = "{class_name}"
     let tVarName = "{var_name}"
     let tVarType = "{var_type}"
+    let tSubVarType = "{sub_type}"
     let tKey = "{key}"
 }
 

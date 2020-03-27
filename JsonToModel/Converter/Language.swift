@@ -27,8 +27,11 @@ indirect enum VarTypes {
         switch self {
         case .int, .double, .string, .boolean:
             return .fundamental
-        case .array(_):
-            return .array
+        case .array(let type):
+            switch type {
+            case .userDefined(_): return .arrayDerived
+            default: return .array
+            }
         case .userDefined(_), .any:
             return .derived
         }
@@ -38,6 +41,15 @@ indirect enum VarTypes {
 
 protocol LanguageModel {
     func get(type: VarTypes) -> String
+}
+
+extension LanguageModel {
+    func subType(type: VarTypes) -> String {
+        switch type {
+        case .array(let type): return get(type: type)
+        default: return ""
+        }
+    }
 }
 
 class JavaLanguage: LanguageModel {
@@ -88,11 +100,11 @@ class DartLanguage: LanguageModel {
         case .any: return "Object"
         case .array(let type):
             switch type {
-            case .int: return "int[]"
-            case .boolean: return "boolean[]"
-            case .double: return "double[]"
+            case .int: return "List<int>"
+            case .boolean: return "List<boolean>"
+            case .double: return "List<double>"
             case .string: return "List<String>"
-            case .any: return "<Object>"
+            case .any: return "<dynamic>"
             case .array(let type): return "List<" + get(type: type) + ">"
             case .userDefined(let type): return "List<" + type + ">"
             }
