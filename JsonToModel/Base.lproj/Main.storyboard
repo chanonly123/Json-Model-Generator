@@ -348,8 +348,8 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5kA-XQ-q1X">
-                                                                <rect key="frame" x="194" y="268" width="68" height="16"/>
-                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Json Input" id="33J-5k-UDD">
+                                                                <rect key="frame" x="191" y="268" width="74" height="16"/>
+                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="JSON Input" id="33J-5k-UDD">
                                                                     <font key="font" usesAppearanceFont="YES"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -708,7 +708,7 @@ Gw
         <scene sceneID="CUx-Se-R8w">
             <objects>
                 <viewController storyboardIdentifier="HelpVC" id="UfX-3j-57i" customClass="HelpVC" customModule="JsonToModel" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="7BA-66-sSg">
+                    <view key="view" id="7BA-66-sSg">
                         <rect key="frame" x="0.0" y="0.0" width="874" height="256"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

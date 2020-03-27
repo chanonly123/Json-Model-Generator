@@ -8,6 +8,7 @@
 * [Gloss | Swift](https://github.com/hkellaway/Gloss)
 * [Codable | Swift]([https://developer.apple.com/documentation/swift/codable](https://developer.apple.com/documentation/swift/codable))
 * GSON | Java/Kotlin
+* Flutter | Dart 
 * User defined templates also supported.
 
 ### Download
