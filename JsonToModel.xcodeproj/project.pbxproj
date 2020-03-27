@@ -113,9 +113,9 @@
 			children = (
 				1744AEBB2192BE110068F930 /* Extentions.swift */,
 				1763655B219303220083A69B /* Highlighter.swift */,
-				170A1AD52424D1AA004B792D /* TemplateConverter.swift */,
 				17EEAE00242BB8CA009A3BDC /* Language.swift */,
 				1700011D242922E000C94610 /* Templates.swift */,
+				170A1AD52424D1AA004B792D /* TemplateConverter.swift */,
 			);
 			path = Converter;
 			sourceTree = "<group>";

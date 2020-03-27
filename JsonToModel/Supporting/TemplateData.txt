@@ -1,3 +1,23 @@
+Json|Dart
+#
+class {class_name} {
+    
+    <loop>
+    var {var_name}: {var_type}; </loop>
+    
+    {class_name}({<loop> this.{var_name},</loop> })
+    
+    {class_name}.fromJson(Map<String, dynamic> json) {
+        <loop>
+        {var_name} = json['{key}']; </loop>
+    }
+    
+    Map<String, dynamic> toJson() {
+        final Map<String, dynamic> data = new Map<String, dynamic>();
+        <loop>
+        data['{key}'] = this.{var_name};</loop>
+    }
+}
 #
 Object Mapper|Swift
 #

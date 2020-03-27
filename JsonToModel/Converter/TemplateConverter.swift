@@ -46,42 +46,41 @@ class TemplateConverter {
     }
     
     func process(dict: [String: Any?]) -> MirrorModel {
-        let mirror = MirrorModel()
-        let lang: LanguageModel = template.language.model
+        let mirror = MirrorModel(template.language.model)
         for key in dict.keys {
             guard let value = dict[key] else { continue }
-            var varType: String
+            var varType: VarTypes
             
             if let nsNumber = value as? NSNumber {
-                varType = nsNumber.getType(lang: lang)
+                varType = nsNumber.getType()
             } else if value is String {
-                varType = lang.string
+                varType = .string
             } else if let array = value as? NSArray {
                 if array.filter({ $0 is Int }).count == array.count {
-                    varType = lang.array(type: lang.int)
+                    varType = .array(.int)
                 } else if array.filter({ $0 is Double }).count == array.count {
-                    varType = lang.array(type: lang.double)
+                    varType = .array(.double)
                 } else if array.filter({ $0 is Bool }).count == array.count {
-                    varType = lang.array(type: lang.bool)
+                    varType = .array(.boolean)
                 } else if array.filter({ $0 is String }).count == array.count {
-                    varType = lang.array(type: lang.string)
+                    varType = .array(.string)
                 } else if array.filter({ $0 is [String: Any?] }).count == array.count {
                     if let subDict = array.firstObject as? [String: Any?] {
                         let sub = process(dict: subDict)
                         sub.className = key.to(caseType: caseTypeClass)
                         mirror.sub.append(sub)
                     }
-                    varType = lang.array(type: key.to(caseType: caseTypeClass))
+                    varType = .array(.userDefined(key.to(caseType: caseTypeClass)))
                 } else {
-                    varType = lang.array(type: lang.any)
+                    varType = .array(.any)
                 }
             } else if let subDict = value as? [String: Any?] {
                 let sub = process(dict: subDict)
                 sub.className = key.to(caseType: caseTypeClass)
                 mirror.sub.append(sub)
-                varType = sub.className
+                varType = .userDefined(sub.className)
             } else {
-                varType = lang.any
+                varType = .any
             }
             
             mirror.key.append(key)
@@ -104,19 +103,44 @@ class TemplateConverter {
     }
 }
 
+enum DataTypes: String {
+    case all = "loop", fundamental, derived, array
+}
+
 class MirrorModel {
+    let lang: LanguageModel
+    
     var className: String = "Root"
     var varName: [String] = []
-    var varType: [String] = []
+    var varType: [VarTypes] = []
     var key: [String] = []
     
     var sub: [MirrorModel] = []
+
+    init(_ l: LanguageModel) {
+        lang = l
+    }
     
     func toString(template: String) -> String {
         var template = template.replacingOccurrences(of: "\t", with: "    ")
+        
+        replaceLoops(dataType: DataTypes.all, template: &template)
+        replaceLoops(dataType: DataTypes.fundamental, template: &template)
+        replaceLoops(dataType: DataTypes.derived, template: &template)
+        replaceLoops(dataType: DataTypes.array, template: &template)
+        
+        return template.replacingOccurrences(of: "\(tClassName)", with: className)
+    }
+    
+    func replaceLoops(dataType: DataTypes, template: inout String) {
+        let loopType = dataType.rawValue
         while true {
-            guard let start = template.range(of: "<loop>"),
-                let end = template.range(of: "</loop>") else { break }
+            guard let start = template.range(of: "<\(loopType)>"),
+                let end = template.range(of: "</\(loopType)>"),
+                start.upperBound < end.lowerBound
+                else { break }
+            
+            
             let line = template[start.upperBound..<end.lowerBound]
             
             var lineStartIndex = template.index(before: start.lowerBound)
@@ -125,24 +149,28 @@ class MirrorModel {
                 lineStartIndex = template.index(before: lineStartIndex)
                 indentSpaceCount += 1
             }
-            
-            var loopsString = ""//"\n"
+                        
+            var loopsString = ""
             for i in 0..<varName.count {
-                let newLine = line.replacingOccurrences(of: "\(tVarName)", with: "\(varName[i])")
-                    .replacingOccurrences(of: "\(tVarType)", with: "\(varType[i])")
-                    .replacingOccurrences(of: "\(tKey)", with: "\(key[i])")
-                
-                loopsString += "\(String(repeating: " ", count: indentSpaceCount))\(newLine)"
-                /*if i < varName.count - 1 {
-                    loopsString += "\n"
-                }*/
+                let type = self.varType[i]
+                if dataType == .all || type.getGroup == dataType {
+                    let varType = lang.get(type: type)
+                    let newLine = line.replacingOccurrences(of: "\(tVarName)", with: "\(varName[i])")
+                        .replacingOccurrences(of: "\(tVarType)", with: "\(varType)")
+                        .replacingOccurrences(of: "\(tKey)", with: "\(key[i])")
+                    
+                    loopsString += "\(String(repeating: " ", count: indentSpaceCount))\(newLine)"
+                }
             }
-            if loopsString.last == "," {
-                loopsString.removeLast()
+            if let firstNewLine = loopsString.firstIndex(where: { $0 == "\n" }) {
+                loopsString.replaceSubrange(loopsString.startIndex...firstNewLine, with: "")
             }
-            template.replaceSubrange(lineStartIndex..<end.upperBound, with: loopsString)
+            if let lastCommaIndex = loopsString.lastIndex(where: { $0 == "," })  {
+                loopsString.remove(at: lastCommaIndex)
+            }
+            
+            template.replaceSubrange(template.index(after: lineStartIndex)..<end.upperBound, with: loopsString)
         }
-        return template.replacingOccurrences(of: "\(tClassName)", with: className)
     }
     
     let tClassName = "{class_name}"
@@ -156,21 +184,21 @@ enum ConversionResult {
 }
 
 extension NSNumber {
-    func getType(lang: LanguageModel) -> String {
+    func getType() -> VarTypes {
         switch CFGetTypeID(self as CFTypeRef) {
         case CFBooleanGetTypeID():
-            return lang.bool
+            return .boolean
         case CFNumberGetTypeID():
             switch CFNumberGetType(self as CFNumber) {
             case .sInt8Type,.sInt16Type, .sInt32Type, .sInt64Type:
-                return lang.int
+                return .int
             case .doubleType:
-                return lang.double
+                return .double
             default:
-                return lang.double
+                return .double
             }
         default:
-            return lang.any
+            return .any
         }
     }
 }

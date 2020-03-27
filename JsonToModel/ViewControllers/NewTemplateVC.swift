@@ -22,7 +22,7 @@ class NewTemplateVC: NSViewController {
     var didCreate: (()->Void)?
     var didDelete: (()->Void)?
     
-    var allLangs: [LangaugeType] = [.Swift, .Java, .Kotlin]
+    var allLangs: [LangaugeType] = [.Swift, .Java, .Kotlin, .Dart]
     
     override func viewDidLoad() {
         super.viewDidLoad()
