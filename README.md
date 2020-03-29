@@ -1,7 +1,7 @@
 ![alt tag](https://github.com/chanonly123/Json-Model-Generator/raw/master/banner1.jpg)
 # Json-Model-Generator
 
-### Highly customisable MacOS application for generating JSON classes
+### Template based highly customisable MacOS application for generating JSON classes
 
 ### Pre-build Support for 
 * [ObjectMapper | Swift](https://github.com/tristanhimmelman/ObjectMapper)

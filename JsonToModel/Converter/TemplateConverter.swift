@@ -28,8 +28,11 @@ class TemplateConverter {
             if let data = self.jsonString.data(using: .utf8) {
                 do {
                     if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+    
                         let template = self.process(dict: dict)
                         let final = self.getString(mirror: template)
+                            .removeExtraNewlines()
+                            
                         DispatchQueue.main.async {
                             self.completion?(ConversionResult.success(final))
                         }
@@ -122,7 +125,9 @@ class MirrorModel {
     }
     
     func toString(template: String) -> String {
-        var template = template.replacingOccurrences(of: "\t", with: "    ")
+        var template = template
+            .replacingOccurrences(of: "\t", with: "    ")
+            .removeSpaceBetweenNewlines()
         
         replaceLoops(dataType: DataTypes.all, template: &template)
         replaceLoops(dataType: DataTypes.fundamental, template: &template)
@@ -172,7 +177,11 @@ class MirrorModel {
                 loopsString.remove(at: lastCommaIndex)
             }
             
-            template.replaceSubrange(template.index(after: lineStartIndex)..<end.upperBound, with: loopsString)
+            if loopsString.isEmpty {
+                template.replaceSubrange(lineStartIndex..<end.upperBound, with: loopsString)
+            } else {
+                template.replaceSubrange(template.index(after: lineStartIndex)..<end.upperBound, with: loopsString)
+            }
         }
     }
     
@@ -204,28 +213,5 @@ extension NSNumber {
         default:
             return .any
         }
-    }
-}
-
-extension Data {
-    var html2AttributedString: NSAttributedString? {
-        do {
-            return try NSAttributedString(data: self, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
-        } catch {
-            print("error:", error)
-            return  nil
-        }
-    }
-    var html2String: String {
-        return html2AttributedString?.string ?? ""
-    }
-}
-
-extension String {
-    var html2AttributedString: NSAttributedString? {
-        return Data(utf8).html2AttributedString
-    }
-    var html2String: String {
-        return html2AttributedString?.string ?? ""
     }
 }

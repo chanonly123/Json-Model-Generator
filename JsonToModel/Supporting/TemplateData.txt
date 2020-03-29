@@ -94,10 +94,10 @@ class {class_name} {
         {var_name} = json['{key}'] != null ? new {var_type}.fromJson(json['{key}']) : null;</derived>
         <array-derived>
         if (json['{key}'] != null) {
-          {var_name} = new {var_type}();
-          json['{key}'].forEach((v) {
-            {var_name}.add(new {sub_type}.fromJson(v));
-          });
+            {var_name} = new {var_type}();
+            json['{key}'].forEach((v) {
+                {var_name}.add(new {sub_type}.fromJson(v));
+            });
         }</array-derived>
     }
     
@@ -117,7 +117,7 @@ class {class_name} {
         
         <array-derived>
         if (this.{var_name} != null) {
-              data['{key}'] = this.{var_name}.map((v) => v.toJson()).toList();
+            data['{key}'] = this.{var_name}.map((v) => v.toJson()).toList();
         }</array-derived>
             
         return data;

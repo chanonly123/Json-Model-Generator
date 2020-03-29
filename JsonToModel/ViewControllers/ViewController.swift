@@ -31,7 +31,7 @@ class ViewController: NSViewController, NSWindowDelegate {
     
     var selected: TemplateBean? {
         didSet {
-            self.tvTemplateString.text = selected?.template ?? ""
+            self.tvTemplateString.text = (selected?.template ?? "")
             self.btnEdit.isHidden = !(selected?.isUser ?? false)
         }
     }
@@ -57,40 +57,40 @@ class ViewController: NSViewController, NSWindowDelegate {
         tvJsonString.scrollView.drawsBackground = true
         tvJsonString.theme = MyTheme()
         tvJsonString.text =
-            """
-                    {
-                    "success": true,
-                    "data": {
-                    "voice_opinions": [
-                    {
-                    "createdAt": 1541413168000,
-                    "updateAt": 1541413168000,
-                    "id": 246,
-                    "unique_id": "uo-5edc608309257fde",
-                    "user_id": 614,
-                    "hot_topic_id": 8,
-                    "vote": 0,
-                    "audio_id": 234,
-                    "status": 1,
-                    "counter_opinions": [
-                    {
-                    "createdAt": 1541413168000,
-                    "updateAt": 1541413168000,
-                    "id": 246,
-                    "unique_id": "uo-5edc608309257fde",
-                    "user_id": 614,
-                    "hot_topic_id": 8,
-                    "vote": 0,
-                    "audio_id": 234,
-                    "status": 1
-                    }
-                    ]
-                    }
-                    ]
-                    },
-                    "code": 200
-                    }
-            """
+"""
+{
+  "success": true,
+  "data": {
+    "voice_opinions": [
+      {
+        "createdAt": 1541413168000,
+        "updateAt": 1541413168000,
+        "id": 246,
+        "unique_id": "uo-5edc608309257fde",
+        "user_id": 614,
+        "hot_topic_id": 8,
+        "vote": 0,
+        "audio_id": 234,
+        "status": 1,
+        "counter_opinions": [
+          {
+            "createdAt": 1541413168000,
+            "updateAt": 1541413168000,
+            "id": 246,
+            "unique_id": "uo-5edc608309257fde",
+            "user_id": 614,
+            "hot_topic_id": 8,
+            "vote": 0,
+            "audio_id": 234,
+            "status": 1
+          }
+        ]
+      }
+    ]
+  },
+  "code": 200
+}
+"""
         
         reloadTemplates()
         processJson()
