@@ -7,7 +7,7 @@ struct {class_name} {
 
     enum CodingKeys: String, CodingKey {
         <loop>
-        case self.{var_name} = "{key}"</loop>
+        case {var_name} = "{key}"</loop>
     }
 }
 #

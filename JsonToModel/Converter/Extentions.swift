@@ -77,7 +77,7 @@ extension String {
         var count = 0
         for each in subs {
             if each.isEmpty {
-               count += 1
+                count += 1
             } else {
                 count = 0
             }

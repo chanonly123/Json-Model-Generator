@@ -325,10 +325,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="246"/>
         </scene>
-        <!--View Controller-->
+        <!--JSON to Model class generator-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="JsonToModel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="JSON to Model class generator" id="XfG-lQ-9wD" customClass="ViewController" customModule="JsonToModel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="915" height="593"/>
                         <autoresizingMask key="autoresizingMask"/>
