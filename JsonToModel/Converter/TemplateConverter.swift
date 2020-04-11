@@ -173,8 +173,10 @@ class MirrorModel {
             if let firstNewLine = loopsString.firstIndex(where: { $0 == "\n" }) {
                 loopsString.replaceSubrange(loopsString.startIndex...firstNewLine, with: "")
             }
-            if let lastCommaIndex = loopsString.lastIndex(where: { $0 == "," })  {
-                loopsString.remove(at: lastCommaIndex)
+            if loopsString.trimmingCharacters(in: .whitespacesAndNewlines).last == "," {
+                if let lastCommaIndex = loopsString.lastIndex(where: { $0 == "," })  {
+                    loopsString.remove(at: lastCommaIndex)
+                }
             }
             
             if loopsString.isEmpty {

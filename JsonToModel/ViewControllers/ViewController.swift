@@ -36,6 +36,8 @@ class ViewController: NSViewController, NSWindowDelegate {
         }
     }
     
+    lazy var appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -99,6 +101,7 @@ class ViewController: NSViewController, NSWindowDelegate {
     override func viewDidAppear() {
         super.viewDidAppear()
         view.window?.delegate = self
+        view.window?.title = "JSON to Model (v\(appVersion ?? "-"))"
     }
     
     func windowShouldClose(_ sender: NSWindow) -> Bool {
