@@ -197,16 +197,34 @@ class ViewController: NSViewController, NSWindowDelegate {
         }
         processJson()
     }
+    
+    @IBAction func actionPrettyPrintJson(_ sender: Any) {
+        if let data = tvJsonString.text.data(using: .utf8),
+            let obj = try? JSONSerialization.jsonObject(with: data, options: []),
+            let data2 = try? JSONSerialization.data(withJSONObject: obj, options: [.prettyPrinted]),
+            let prettyPrintedString = String(data: data2, encoding: .utf8) {
+            tvJsonString.text = prettyPrintedString
+        }
+    }
+    
+    @IBAction func actionDontPrettyPrintJson(_ sender: Any) {
+        if let data = tvJsonString.text.data(using: .utf8),
+            let obj = try? JSONSerialization.jsonObject(with: data, options: []),
+            let data2 = try? JSONSerialization.data(withJSONObject: obj, options: []),
+            let prettyPrintedString = String(data: data2, encoding: .utf8) {
+            tvJsonString.text = prettyPrintedString
+        }
+    }
 }
 
 extension ViewController: SyntaxTextViewDelegate {
+    func didChangeSelectedRange(_ syntaxTextView: SyntaxTextView, selectedRange: NSRange) {}
+    
     func didChangeText(_ syntaxTextView: SyntaxTextView) {
         if syntaxTextView === tvJsonString || syntaxTextView === tvTemplateString {
             processJson()
         }
     }
-    
-    func didChangeSelectedRange(_ syntaxTextView: SyntaxTextView, selectedRange: NSRange) {}
     
     func lexerForSource(_ source: String) -> Lexer {
         return ViewController.lexer
