@@ -358,11 +358,35 @@
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="C0S-CA-JQ6" customClass="SyntaxTextView" customModule="SavannaKit">
                                                                 <rect key="frame" x="0.0" y="0.0" width="456" height="260"/>
                                                             </customView>
+                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tf2-U8-AuS">
+                                                                <rect key="frame" x="2" y="259" width="50" height="32"/>
+                                                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSListViewTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="23h-x2-7GR">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="actionDontPrettyPrintJson:" target="XfG-lQ-9wD" id="vEs-bN-bPr"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="di6-Eb-NAo">
+                                                                <rect key="frame" x="52" y="259" width="52" height="32"/>
+                                                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSPathTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EmB-Lc-EFS">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="actionPrettyPrintJson:" target="XfG-lQ-9wD" id="dNU-QC-0am"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstItem="Tf2-U8-AuS" firstAttribute="leading" secondItem="bfQ-6F-M3d" secondAttribute="leading" constant="8" id="RGN-Sn-Yzp"/>
+                                                            <constraint firstItem="Tf2-U8-AuS" firstAttribute="centerY" secondItem="5kA-XQ-q1X" secondAttribute="centerY" id="YEQ-CR-SRt"/>
                                                             <constraint firstItem="C0S-CA-JQ6" firstAttribute="leading" secondItem="bfQ-6F-M3d" secondAttribute="leading" id="dGd-KH-50c"/>
+                                                            <constraint firstItem="di6-Eb-NAo" firstAttribute="leading" secondItem="Tf2-U8-AuS" secondAttribute="trailing" constant="12" id="f2q-9y-iEI"/>
                                                             <constraint firstAttribute="trailing" secondItem="C0S-CA-JQ6" secondAttribute="trailing" id="fET-nh-Xcf"/>
                                                             <constraint firstAttribute="bottom" secondItem="C0S-CA-JQ6" secondAttribute="bottom" id="g9q-WT-3hk"/>
+                                                            <constraint firstItem="di6-Eb-NAo" firstAttribute="centerY" secondItem="5kA-XQ-q1X" secondAttribute="centerY" id="hFu-Tc-2Og"/>
                                                             <constraint firstItem="C0S-CA-JQ6" firstAttribute="top" secondItem="5kA-XQ-q1X" secondAttribute="bottom" constant="8" id="rDb-zx-KBS"/>
                                                             <constraint firstItem="5kA-XQ-q1X" firstAttribute="centerX" secondItem="bfQ-6F-M3d" secondAttribute="centerX" id="vkj-xq-Mel"/>
                                                             <constraint firstItem="5kA-XQ-q1X" firstAttribute="top" secondItem="bfQ-6F-M3d" secondAttribute="top" constant="8" id="zGf-1h-4aC"/>
@@ -761,6 +785,8 @@ Gw
     </scenes>
     <resources>
         <image name="NSInfo" width="32" height="32"/>
+        <image name="NSListViewTemplate" width="14" height="10"/>
+        <image name="NSPathTemplate" width="16" height="10"/>
         <image name="NSSmartBadgeTemplate" width="14" height="14"/>
     </resources>
 </document>
