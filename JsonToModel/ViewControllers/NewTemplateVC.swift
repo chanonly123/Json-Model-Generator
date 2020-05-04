@@ -11,6 +11,7 @@ import SavannaKit
 
 class NewTemplateVC: NSViewController {
     
+    @IBOutlet weak var lblTitle: NSTextField!
     @IBOutlet weak var tfName: NSTextField!
     @IBOutlet weak var popupLang: NSPopUpButton!
     @IBOutlet weak var tfTemplate: SyntaxTextView!
@@ -41,8 +42,10 @@ class NewTemplateVC: NSViewController {
                 popupLang.selectItem(at: index)
             }
             btnDelete.isHidden = false
+            lblTitle.stringValue = "Update template"
         } else {
             btnDelete.isHidden = true
+            lblTitle.stringValue = "New template"
         }
     }
     

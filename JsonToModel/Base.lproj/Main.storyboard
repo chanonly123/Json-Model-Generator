@@ -719,6 +719,7 @@ Gw
                     </view>
                     <connections>
                         <outlet property="btnDelete" destination="GmM-YT-lSv" id="Tv4-K5-bbx"/>
+                        <outlet property="lblTitle" destination="gjG-Ta-9JQ" id="T9C-0s-Ry0"/>
                         <outlet property="popupLang" destination="gT6-gy-anx" id="KQp-xO-UIC"/>
                         <outlet property="tfName" destination="sHk-l4-drG" id="pRn-6U-XuM"/>
                         <outlet property="tfTemplate" destination="yNS-MW-oF9" id="8LW-xD-Cel"/>
