@@ -45,7 +45,7 @@ enum MyTokenType {
     ]
     
     static let types: [String] = [
-        "Bool", "Int", "String", "Double", "int", "double", "void", "self", "class_name", "var_name", "var_type", "key", "Data", "CodingKey", "ArrayList", "List", "boolean", "dynamic", "sub_type"
+        "Bool", "bool", "Int", "String", "Double", "int", "double", "void", "self", "class_name", "var_name", "var_type", "key", "Data", "CodingKey", "ArrayList", "List", "boolean", "dynamic", "sub_type"
     ]
 }
 
