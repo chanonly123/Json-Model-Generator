@@ -16,6 +16,7 @@ class NewTemplateVC: NSViewController {
     @IBOutlet weak var popupLang: NSPopUpButton!
     @IBOutlet weak var tfTemplate: SyntaxTextView!
     @IBOutlet weak var btnDelete: NSButton!
+    @IBOutlet weak var btnCreate: NSButton!
     
     var inputTemplate: TemplateBean?
     
@@ -43,9 +44,11 @@ class NewTemplateVC: NSViewController {
             }
             btnDelete.isHidden = false
             lblTitle.stringValue = "Update template"
+            btnCreate.title = "Update"
         } else {
             btnDelete.isHidden = true
             lblTitle.stringValue = "New template"
+            btnCreate.title = "Create"
         }
     }
     
