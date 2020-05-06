@@ -18,4 +18,4 @@
 [SavannaKit](https://github.com/louisdh/savannakit)
 
 ### Screenshot
-![alt tag](https://github.com/chanonly123/Json-Model-Generator/raw/master/demo1.png)
+![alt tag](https://github.com/chanonly123/Json-Model-Generator/raw/master/demo1.jpg)
