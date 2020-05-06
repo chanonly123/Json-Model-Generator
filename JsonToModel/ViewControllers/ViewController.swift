@@ -41,6 +41,8 @@ class ViewController: NSViewController, NSWindowDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        VersionCheck.checkVersion()
+        
         ViewController.viewc = self
     
         tvCode.delegate = self
