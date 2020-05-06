@@ -718,6 +718,7 @@ Gw
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnCreate" destination="DDb-MQ-khp" id="S0U-iQ-RGs"/>
                         <outlet property="btnDelete" destination="GmM-YT-lSv" id="Tv4-K5-bbx"/>
                         <outlet property="lblTitle" destination="gjG-Ta-9JQ" id="T9C-0s-Ry0"/>
                         <outlet property="popupLang" destination="gT6-gy-anx" id="KQp-xO-UIC"/>
