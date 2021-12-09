@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -336,19 +336,19 @@
                             <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RKe-tx-Ogn">
                                 <rect key="frame" x="0.0" y="0.0" width="915" height="593"/>
                                 <subviews>
-                                    <customView id="6QL-ar-mWB">
+                                    <customView misplaced="YES" id="6QL-ar-mWB">
                                         <rect key="frame" x="0.0" y="0.0" width="456" height="593"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <splitView dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="SQG-HE-u7L">
-                                                <rect key="frame" x="0.0" y="0.0" width="456" height="593"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="426" height="593"/>
                                                 <subviews>
                                                     <customView id="bfQ-6F-M3d">
-                                                        <rect key="frame" x="0.0" y="0.0" width="456" height="292"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="426" height="292"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5kA-XQ-q1X">
-                                                                <rect key="frame" x="191" y="268" width="74" height="16"/>
+                                                                <rect key="frame" x="176" y="268" width="74" height="16"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="JSON Input" id="33J-5k-UDD">
                                                                     <font key="font" usesAppearanceFont="YES"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -356,10 +356,10 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="C0S-CA-JQ6" customClass="SyntaxTextView" customModule="SavannaKit">
-                                                                <rect key="frame" x="0.0" y="0.0" width="456" height="260"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="426" height="260"/>
                                                             </customView>
                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tf2-U8-AuS">
-                                                                <rect key="frame" x="2" y="259" width="50" height="32"/>
+                                                                <rect key="frame" x="1" y="259" width="46" height="32"/>
                                                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSListViewTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="23h-x2-7GR">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -369,7 +369,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="di6-Eb-NAo">
-                                                                <rect key="frame" x="52" y="259" width="52" height="32"/>
+                                                                <rect key="frame" x="45" y="259" width="49" height="32"/>
                                                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSPathTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EmB-Lc-EFS">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -393,11 +393,11 @@
                                                         </constraints>
                                                     </customView>
                                                     <customView id="FH3-ra-5fB">
-                                                        <rect key="frame" x="0.0" y="302" width="456" height="291"/>
+                                                        <rect key="frame" x="0.0" y="302" width="426" height="291"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mev-3g-jtC">
-                                                                <rect key="frame" x="198" y="267" width="60" height="16"/>
+                                                                <rect key="frame" x="183" y="267" width="60" height="16"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Template" id="PKQ-3O-oOk">
                                                                     <font key="font" usesAppearanceFont="YES"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -405,10 +405,10 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="uAD-JN-Qaa" customClass="SyntaxTextView" customModule="SavannaKit">
-                                                                <rect key="frame" x="0.0" y="0.0" width="456" height="259"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="426" height="259"/>
                                                             </customView>
                                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yZ6-Ur-Ki2">
-                                                                <rect key="frame" x="374" y="262" width="77" height="25"/>
+                                                                <rect key="frame" x="344" y="261" width="78" height="25"/>
                                                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="laC-WD-IA7" id="FSH-SN-mP4">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
@@ -425,7 +425,7 @@
                                                                 </connections>
                                                             </popUpButton>
                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0ry-Qt-gBB">
-                                                                <rect key="frame" x="2" y="258" width="124" height="32"/>
+                                                                <rect key="frame" x="1" y="258" width="118" height="32"/>
                                                                 <buttonCell key="cell" type="push" title="New template" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="o30-w8-43c">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -435,7 +435,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cnC-6Z-89X">
-                                                                <rect key="frame" x="324" y="258" width="50" height="32"/>
+                                                                <rect key="frame" x="302" y="258" width="44" height="32"/>
                                                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSSmartBadgeTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zd2-2m-b9z">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -445,7 +445,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mg2-Rf-eoC">
-                                                                <rect key="frame" x="122" y="258" width="68" height="32"/>
+                                                                <rect key="frame" x="113" y="258" width="48" height="32"/>
                                                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSInfo" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eLi-vI-CiO">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -488,12 +488,12 @@
                                             <constraint firstAttribute="trailing" secondItem="SQG-HE-u7L" secondAttribute="trailing" id="uVS-Lb-APX"/>
                                         </constraints>
                                     </customView>
-                                    <customView id="7q4-bD-kTT">
+                                    <customView misplaced="YES" id="7q4-bD-kTT">
                                         <rect key="frame" x="466" y="0.0" width="449" height="593"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AeE-oO-TJZ">
-                                                <rect key="frame" x="206" y="289" width="37" height="16"/>
+                                                <rect key="frame" x="221" y="289" width="37" height="16"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="JVG-Zc-Fwi">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -501,24 +501,25 @@
                                                 </textFieldCell>
                                             </textField>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="bsX-Aw-Uao" customClass="SyntaxTextView" customModule="SavannaKit">
-                                                <rect key="frame" x="0.0" y="0.0" width="449" height="561"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="479" height="561"/>
                                             </customView>
-                                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yhl-5t-TFt">
-                                                <rect key="frame" x="299" y="565" width="144" height="24"/>
+                                            <segmentedControl verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yhl-5t-TFt">
+                                                <rect key="frame" x="244" y="565" width="198" height="24"/>
                                                 <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="rounded" trackingMode="selectOne" id="yGG-g8-pa9">
                                                     <font key="font" metaFont="system"/>
                                                     <segments>
                                                         <segment label="same" width="46"/>
                                                         <segment label="aB" width="45" selected="YES" tag="1"/>
                                                         <segment label="a_b" width="45"/>
+                                                        <segment label="AB"/>
                                                     </segments>
                                                 </segmentedCell>
                                                 <connections>
                                                     <action selector="actionSegChange:" target="XfG-lQ-9wD" id="6sY-lB-sMx"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B1O-nf-Zhc">
-                                                <rect key="frame" x="201" y="569" width="47" height="16"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B1O-nf-Zhc">
+                                                <rect key="frame" x="185" y="569" width="47" height="16"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Output" id="Lle-aq-UXz">
                                                     <font key="font" usesAppearanceFont="YES"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -577,11 +578,11 @@
             <objects>
                 <viewController storyboardIdentifier="NewTemplateVC" id="9Rh-Gq-MUu" customClass="NewTemplateVC" customModule="JsonToModel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ABF-N9-BBE">
-                        <rect key="frame" x="0.0" y="0.0" width="631" height="411"/>
+                        <rect key="frame" x="0.0" y="0.0" width="631" height="410"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gjG-Ta-9JQ">
-                                <rect key="frame" x="18" y="371" width="595" height="20"/>
+                                <rect key="frame" x="18" y="370" width="595" height="20"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="New Template" id="Se7-Q0-O8A">
                                     <font key="font" metaFont="systemSemibold" size="17"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -589,7 +590,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KrW-qj-2EI">
-                                <rect key="frame" x="324" y="339" width="64" height="16"/>
+                                <rect key="frame" x="324" y="338" width="64" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Language" id="bsW-VO-Jip">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -597,7 +598,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pOv-0l-K6D">
-                                <rect key="frame" x="18" y="339" width="40" height="16"/>
+                                <rect key="frame" x="18" y="338" width="40" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Name" id="qv9-BZ-YNM">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -605,7 +606,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sHk-l4-drG">
-                                <rect key="frame" x="20" y="309" width="289" height="22"/>
+                                <rect key="frame" x="20" y="308" width="289" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="knd-NX-3j0"/>
                                 </constraints>
@@ -616,7 +617,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DDb-MQ-khp">
-                                <rect key="frame" x="537" y="13" width="80" height="32"/>
+                                <rect key="frame" x="536" y="13" width="82" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="68" id="Ikq-M0-4a1"/>
                                 </constraints>
@@ -629,7 +630,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dwj-bs-U3O">
-                                <rect key="frame" x="456" y="13" width="82" height="32"/>
+                                <rect key="frame" x="455" y="13" width="84" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="jBC-Pq-LFd"/>
                                 </constraints>
@@ -645,7 +646,7 @@ Gw
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gT6-gy-anx">
-                                <rect key="frame" x="324" y="307" width="294" height="25"/>
+                                <rect key="frame" x="323" y="306" width="296" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8zu-Wi-7WX" id="GAk-lX-Vfg">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -659,7 +660,7 @@ Gw
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F3c-q8-Mly">
-                                <rect key="frame" x="18" y="269" width="60" height="16"/>
+                                <rect key="frame" x="18" y="268" width="60" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Template" id="nfh-Xh-tzW">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -667,13 +668,13 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="yNS-MW-oF9" customClass="SyntaxTextView" customModule="SavannaKit">
-                                <rect key="frame" x="20" y="61" width="591" height="200"/>
+                                <rect key="frame" x="20" y="60" width="591" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="gSj-nj-7ir"/>
                                 </constraints>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GmM-YT-lSv">
-                                <rect key="frame" x="14" y="13" width="82" height="32"/>
+                                <rect key="frame" x="13" y="13" width="84" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="g9l-b2-tlx"/>
                                 </constraints>
@@ -787,8 +788,8 @@ Gw
     </scenes>
     <resources>
         <image name="NSInfo" width="32" height="32"/>
-        <image name="NSListViewTemplate" width="14" height="10"/>
-        <image name="NSPathTemplate" width="16" height="10"/>
+        <image name="NSListViewTemplate" width="16" height="12"/>
+        <image name="NSPathTemplate" width="19" height="12"/>
         <image name="NSSmartBadgeTemplate" width="14" height="14"/>
     </resources>
 </document>

@@ -9,7 +9,7 @@
 import Foundation
 
 enum LangaugeType: String, Codable {
-    case Swift, Java, Kotlin, Dart
+    case Swift, Java, Kotlin, Dart, CSharp, Python
     
     var model: LanguageModel {
         switch self {
@@ -17,6 +17,8 @@ enum LangaugeType: String, Codable {
         case .Java: return JavaLanguage()
         case .Kotlin: return KotlinLanguage()
         case .Dart: return DartLanguage()
+        case .CSharp: return CSharpLanguage()
+        case .Python: return PythonLanguage()
         }
     }
 }
@@ -40,10 +42,13 @@ indirect enum VarTypes {
 }
 
 protocol LanguageModel {
+    var headerSpacer: Int { get }
     func get(type: VarTypes) -> String
 }
 
 extension LanguageModel {
+    var headerSpacer: Int { return 1 }
+    
     func subType(type: VarTypes) -> String {
         switch type {
         case .array(let type): return get(type: type)
@@ -53,7 +58,6 @@ extension LanguageModel {
 }
 
 class JavaLanguage: LanguageModel {
-    
     func get(type: VarTypes) -> String {
         switch type {
         case .int: return "int"
@@ -123,6 +127,36 @@ class KotlinLanguage: LanguageModel {
         case .any: return "Any"
         case .userDefined(let type): return type
         case .array(let type): return "[" + get(type: type) + "]"
+        }
+    }
+}
+
+class CSharpLanguage: LanguageModel {
+    func get(type: VarTypes) -> String {
+        switch type {
+        case .int: return "int"
+        case .double: return "double"
+        case .string: return "string"
+        case .any: return "object"
+        case .boolean: return "bool"
+        case .userDefined(let utype): return utype
+        case .array(let atype): return "List<\(get(type: atype))>"
+        }
+    }
+}
+
+class PythonLanguage: LanguageModel {
+    var headerSpacer: Int { return 2 }
+    
+    func get(type: VarTypes) -> String {
+        switch type {
+        case .int: return "int"
+        case .double: return "float"
+        case .string: return "str"
+        case .any: return "Any"
+        case .boolean: return "bool"
+        case .userDefined(let utype): return utype
+        case .array(let atype): return "list[\(get(type: atype))]"
         }
     }
 }

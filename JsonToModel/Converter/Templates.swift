@@ -15,12 +15,21 @@ class TemplateList: Codable {
 class TemplateBean: Codable {
     var name: String = ""
     var template: String = ""
+    var templateHeader: String = ""
     var language: LangaugeType = .Swift
     let isUser: Bool
-    let date: Int64 = Int64(Date().timeIntervalSince1970)
+    let date: Int64
+    
+    static let HEADER_MARKER = "<<<"
     
     init(n: String, t: String, l: LangaugeType, isUser: Bool) {
         self.name = n; self.template = t; language = l; self.isUser = isUser
+        self.date = Int64(Date().timeIntervalSince1970)
+        self.handleHeader()
+    }
+    
+    func getFullTemplate() -> String {
+        return templateHeader + (templateHeader.isEmpty ? "" : TemplateBean.HEADER_MARKER) + template
     }
 }
 
@@ -39,5 +48,24 @@ extension TemplateList {
             arr.append(t)
         }
         return arr
+    }
+}
+
+extension TemplateBean {
+    private func handleHeader() {
+        if let (header, tmpl) = TemplateBean.getItems(rawText: self.template) {
+            self.templateHeader = header
+            self.template = tmpl
+        }
+    }
+    
+    static func getItems(rawText: String) -> (String, String)? {
+        if rawText.contains(HEADER_MARKER) {
+            if let regex = try? NSRegularExpression(HEADER_MARKER) {
+                let items = regex.splitn(rawText, 2)
+                return (items[0], items[1])
+            }
+        }
+        return nil
     }
 }

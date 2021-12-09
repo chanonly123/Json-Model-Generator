@@ -12,7 +12,7 @@ class TemplateConverter {
     var template: TemplateBean
     var jsonString: String
     var templateString: String = ""
-    var completion: ((ConversionResult)->Void)?
+    var completion: ((ConversionResult) -> Void)?
     
     var caseTypeClass: CaseType = .none
     var caseTypeVar: CaseType = .none
@@ -30,8 +30,12 @@ class TemplateConverter {
                     if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
     
                         let template = self.process(dict: dict)
-                        let final = self.getString(mirror: template)
-                            .removeExtraNewlines()
+                        var final = self.getString(mirror: template)
+                        
+                        if !self.template.templateHeader.isEmpty {
+                            let count = self.template.language.model.headerSpacer
+                            final = "\(self.template.templateHeader)\(String(repeating: "\n", count: count))\(final)\n"
+                        }
                             
                         DispatchQueue.main.async {
                             self.completion?(ConversionResult.success(final))
@@ -95,8 +99,8 @@ class TemplateConverter {
     
     func getString(mirror: MirrorModel) -> String {
         var subs = mirror.sub.map { getString(mirror: $0) }
-        subs.insert(mirror.toString(template: templateString), at: 0)
-        return subs.joined(separator: "\n\n")
+        subs.insert(mirror.toString(template: templateString).trimmingCharacters(in: .whitespacesAndNewlines), at: 0)
+        return subs.joined(separator: String(repeating: "\n", count: 1 + template.language.model.headerSpacer))
     }
     
     func failedCompletion(_ error: Error) {
@@ -179,6 +183,7 @@ class MirrorModel {
                 }
             }
             
+            loopsString = loopsString.trimTrailing()
             if loopsString.isEmpty {
                 template.replaceSubrange(lineStartIndex..<end.upperBound, with: loopsString)
             } else {
