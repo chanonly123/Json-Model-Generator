@@ -8,11 +8,13 @@
 * [Gloss | Swift](https://github.com/hkellaway/Gloss)
 * [Codable | Swift]([https://developer.apple.com/documentation/swift/codable](https://developer.apple.com/documentation/swift/codable))
 * GSON | Java/Kotlin
-* Flutter | Dart 
+* Flutter | Dart
+* Newtonsoft | CSharp
+* Dataclasses | Python
 * User defined templates also supported.
 
 ### Download
-[⬇️ Download Macos App v1.4 ⬇️](https://github.com/chanonly123/Json-Model-Generator/raw/master/JsonToModel.zip) Requirement High Sierra 10.13 and above
+[⬇️ Download Macos App v1.5 ⬇️](https://github.com/chanonly123/Json-Model-Generator/raw/master/JsonToModel.zip) Requirement High Sierra 10.13 and above
 
 ### Dependency
 [SavannaKit](https://github.com/louisdh/savannakit)

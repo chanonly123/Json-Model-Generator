@@ -1,5 +1,7 @@
 Codable Simple|Swift
 #
+import Foundation
+<<<
 struct {class_name}: Codable {
 
     <loop>
@@ -13,6 +15,8 @@ struct {class_name}: Codable {
 #
 Codable Extended|Swift
 #
+import Foundation
+<<<
 class {class_name}: Codable {
 
     <loop>
@@ -38,6 +42,8 @@ class {class_name}: Codable {
 #
 Object Mapper|Swift
 #
+import ObjectMapper
+<<<
 class {class_name}: Mappable {
 
     <loop>
@@ -75,6 +81,9 @@ struct {class_name}: Glossy {
 #
 GSON|Java
 #
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+<<<
 public class {class_name} {
     
     <loop>
@@ -93,6 +102,9 @@ public class {class_name} {
 #
 GSON|Kotlin
 #
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+<<<
 data class {class_name} (
         
     <loop>
