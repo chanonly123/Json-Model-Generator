@@ -149,3 +149,28 @@ class {class_name} {
     }
 }
 #
+Newtonsoft|CSharp
+#
+using System;
+using System.Collections.Generic;
+
+using Newtonsoft.Json;
+<<<
+public class {class_name}
+{
+    <loop>
+    [JsonProperty(PropertyName = "{key}")]
+    public {var_type} {var_name} { get; set; }
+    </loop>
+}
+#
+Dataclasses|Python
+#
+from dataclasses import dataclass
+from typing import Any
+<<<
+@dataclass
+class {class_name}:
+    <loop>
+    {key}: {var_type}</loop>
+#

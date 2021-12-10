@@ -31,7 +31,7 @@ class ViewController: NSViewController, NSWindowDelegate {
     
     var selected: TemplateBean? {
         didSet {
-            self.tvTemplateString.text = (selected?.template ?? "")
+            self.tvTemplateString.text = selected?.getFullTemplate() ?? ""
             self.btnEdit.isHidden = !(selected?.isUser ?? false)
         }
     }
@@ -148,11 +148,16 @@ class ViewController: NSViewController, NSWindowDelegate {
     func processJson() {
         guard let selected = self.selected else { return }
         let text = tvJsonString.text
+        var templateString = tvTemplateString.text
+        if let (header, tmpl) = TemplateBean.getItems(rawText: templateString) {
+            templateString = tmpl
+            selected.templateHeader = header
+        }
         self.converter.caseTypeClass = self.caseTypeClass
         self.converter.caseTypeVar = self.caseTypeVar
         self.converter.template = selected
         self.converter.jsonString = text
-        self.converter.templateString = tvTemplateString.text
+        self.converter.templateString = templateString
         self.converter.convert()
     }
     
@@ -195,6 +200,7 @@ class ViewController: NSViewController, NSWindowDelegate {
         case 0: caseTypeVar = .none
         case 1: caseTypeVar = .camel
         case 2: caseTypeVar = .lowerSnake
+        case 3: caseTypeVar = .upperCamel
         default: break
         }
         processJson()
