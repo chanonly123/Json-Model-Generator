@@ -11,6 +11,8 @@ import Foundation
 enum LangaugeType: String, Codable {
     case Swift, Java, Kotlin, Dart, CSharp, Python
     
+    static var allTypes: [LangaugeType] = [.Swift, .Java, .Kotlin, .Dart, .CSharp, .Python]
+    
     var model: LanguageModel {
         switch self {
         case .Swift: return SwiftLanguage()
