@@ -149,8 +149,9 @@ class ViewController: NSViewController, NSWindowDelegate {
         guard let selected = self.selected else { return }
         let text = tvJsonString.text
         var templateString = tvTemplateString.text
-        if let (_, tmpl) = TemplateBean.getItems(rawText: templateString) {
+        if let (header, tmpl) = TemplateBean.getItems(rawText: templateString) {
             templateString = tmpl
+            selected.templateHeader = header
         }
         self.converter.caseTypeClass = self.caseTypeClass
         self.converter.caseTypeVar = self.caseTypeVar
