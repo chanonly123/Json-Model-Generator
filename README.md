@@ -15,6 +15,7 @@
 
 ### Download
 [⬇️ Download Macos App v1.5 ⬇️](https://github.com/chanonly123/Json-Model-Generator/raw/master/JsonToModel.zip) Requirement High Sierra 10.13 and above
+![alt tag](https://github.com/chanonly123/Json-Model-Generator/raw/master/open_app_help.jpg)
 
 ### Dependency
 [SavannaKit](https://github.com/louisdh/savannakit)

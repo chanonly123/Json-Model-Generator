@@ -39,11 +39,9 @@
 		17BA1DF0219056AA00E644E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		17BA1DF2219056AA00E644E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17BA1DF3219056AA00E644E0 /* JsonToModel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JsonToModel.entitlements; sourceTree = "<group>"; };
-		17CD56BD241F92CB00776A80 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		17EEADFE242BB545009A3BDC /* LocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalData.swift; sourceTree = "<group>"; };
 		17EEAE00242BB8CA009A3BDC /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		17FF170824628B2B0044A31D /* VersionCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheck.swift; sourceTree = "<group>"; };
-		17FF170A246292D60044A31D /* new_version_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = new_version_info.json; sourceTree = "<group>"; };
 		2AA5C53F61C6B921DC59F4AF /* Pods-JsonToModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JsonToModel.release.xcconfig"; path = "Pods/Target Support Files/Pods-JsonToModel/Pods-JsonToModel.release.xcconfig"; sourceTree = "<group>"; };
 		6CF827A017EE0844F5760F1F /* Pods_JsonToModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JsonToModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53E13A4D83DFC98E483C379 /* Pods-JsonToModel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JsonToModel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JsonToModel/Pods-JsonToModel.debug.xcconfig"; sourceTree = "<group>"; };
@@ -64,8 +62,6 @@
 		17BA1DDD219056A800E644E0 = {
 			isa = PBXGroup;
 			children = (
-				17FF170A246292D60044A31D /* new_version_info.json */,
-				17CD56BD241F92CB00776A80 /* README.md */,
 				17BA1DE8219056A900E644E0 /* JsonToModel */,
 				17BA1DE7219056A900E644E0 /* Products */,
 				645BAE70CF65EFBF83310160 /* Pods */,
